@@ -20,13 +20,13 @@
 - [ ] Responsiv design
 
 ### Sprint 4-5: Processmodul
-- [/] Fas-visualisering (FAS 1-4)
-- [ ] Markera avklarade moment
+- [x] Fas-visualisering (FAS 1-4)
+- [x] Markera avklarade moment
 - [ ] Automatiska påminnelser
 
 ## Fas 4: V1.0 Features
+- [/] CRM-modul (leads, kontakter)
 - [ ] Företagsdatabas
-- [ ] CRM-modul (leads, kontakter)
 - [ ] LIA-platshantering
 - [ ] Rapportering
 - [ ] Slack-integration
