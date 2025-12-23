@@ -1,5 +1,7 @@
 # ChasCareer Webapp - Utvecklingsuppgifter
 
+> **Git Workflow:** Commit och push regelbundet efter varje avslutad feature/fix!
+
 ## Fas 3: MVP-utveckling
 
 ### Sprint 1: Setup & Autentisering ✅
@@ -11,10 +13,10 @@
 - [x] Sätta upp databas (Supabase PostgreSQL)
 
 ### Sprint 2-3: Dashboard
-- [/] Seed data för demo
-- [/] Admin dashboard med översikt
-- [ ] Studerande dashboard
-- [ ] Filtrering och sökning
+- [x] Seed data för demo
+- [x] Admin dashboard med översikt
+- [/] Filtrering och sökning (studerandelista)
+- [ ] Studerande dashboard (markera moment)
 - [ ] Responsiv design
 
 ### Sprint 4-5: Processmodul
