@@ -33,19 +33,22 @@ import {
 } from "lucide-react";
 
 const navigation = {
-  main: [
+  // Gemensamt för alla
+  common: [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  ],
+  // Endast för studenter
+  student: [
     { name: "Min Progression", href: "/dashboard/progression", icon: Target },
     { name: "Mina Leads", href: "/dashboard/leads", icon: Users },
     { name: "Min LIA", href: "/dashboard/lia", icon: Briefcase },
   ],
+  // Endast för admin/lärare
   admin: [
     { name: "Studerande", href: "/dashboard/students", icon: GraduationCap },
     { name: "Företag", href: "/dashboard/companies", icon: Building2 },
     { name: "LIA-platser", href: "/dashboard/lia-management", icon: Briefcase },
     { name: "Rapporter", href: "/dashboard/reports", icon: FileText },
-  ],
-  settings: [
     { name: "Inställningar", href: "/dashboard/settings", icon: Settings },
   ],
 };
@@ -77,11 +80,12 @@ export function AppLayout({ children, user }: AppLayoutProps) {
         </SidebarHeader>
         
         <SidebarContent>
+          {/* Gemensamt: Dashboard */}
           <SidebarGroup>
             <SidebarGroupLabel>Översikt</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {navigation.main.map((item) => (
+                {navigation.common.map((item) => (
                   <SidebarMenuItem key={item.name}>
                     <SidebarMenuButton asChild isActive={pathname === item.href}>
                       <Link href={item.href}>
@@ -95,6 +99,28 @@ export function AppLayout({ children, user }: AppLayoutProps) {
             </SidebarGroupContent>
           </SidebarGroup>
 
+          {/* Student-specifikt */}
+          {!isAdmin && (
+            <SidebarGroup>
+              <SidebarGroupLabel>Min Career</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {navigation.student.map((item) => (
+                    <SidebarMenuItem key={item.name}>
+                      <SidebarMenuButton asChild isActive={pathname === item.href}>
+                        <Link href={item.href}>
+                          <item.icon className="h-4 w-4" />
+                          <span>{item.name}</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          )}
+
+          {/* Admin/Lärare */}
           {isAdmin && (
             <SidebarGroup>
               <SidebarGroupLabel>Administration</SidebarGroupLabel>
@@ -114,23 +140,6 @@ export function AppLayout({ children, user }: AppLayoutProps) {
               </SidebarGroupContent>
             </SidebarGroup>
           )}
-
-          <SidebarGroup>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                {navigation.settings.map((item) => (
-                  <SidebarMenuItem key={item.name}>
-                    <SidebarMenuButton asChild isActive={pathname === item.href}>
-                      <Link href={item.href}>
-                        <item.icon className="h-4 w-4" />
-                        <span>{item.name}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
         </SidebarContent>
 
         <SidebarFooter className="border-t p-4">
