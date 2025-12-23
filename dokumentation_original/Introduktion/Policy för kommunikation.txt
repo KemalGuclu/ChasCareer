@@ -1,0 +1,27 @@
+Programmets policy för kommunikation
+ChatGPT Image 4 okt. 2025 00_42_07.png
+
+För att Chas Career ska fungera smidigt är det viktigt att vi alla följer samma kommunikationsvägar. På så sätt kan vi backoffice stötta där det behövs, samtidigt som de studerande får en tydlig struktur för samarbete och informationsflöde.
+
+Studerande ↔ Studerande
+All kommunikation mellan studerande kring Chas Career ska ske uteslutande i Slack. Det är där vi kan följa gruppers progression, se vilka frågor som dyker upp och kliva in med stöd när det behövs. Därför ber vi er att inte skapa separata Discordkanaler eller liknande – håll all dialog om Chas Career i Slack.
+
+När frågor uppstår gäller följande steg:
+
+Fråga i din Career-grupps kanal.
+
+Om ingen där kan svara, ta frågan vidare till ditt Boiler-team.
+
+Om du fortfarande inte får svar, ställ frågan i din klasskanal.
+
+Studerande → Backoffice
+Om du inte hittar svar via dina medstuderande kan du självklart kontakta oss i backoffice. Kommunikation sker då alltid via mejl till din Karriär- och studiesamordnare (KS). Skriv tydligt vad frågan gäller, så återkommer din KS så snart som möjligt.
+
+Backoffice → Studerande
+Från vår sida ser kommunikationen ut på följande sätt:
+
+Massinformation till samtliga studenter, exempelvis vid förändringar i programmet, delas alltid i kanalen Chas-extended.
+
+Information riktad till enskilda Career-grupper delas i respektive grupps Slackkanal.
+
+Individuell kontakt sker framför allt under LIA-fasen. Då kan vi kontakta studerande direkt via DM i Slack för uppföljning kring LIA-processen eller för dialog om specifika LIA-erbjudanden.

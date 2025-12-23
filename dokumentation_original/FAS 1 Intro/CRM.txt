@@ -1,0 +1,70 @@
+Vad CRM är
+CRM står för Customer Relationship Management system – ett verktyg för att hålla ordning på kontakter, företag och relationer. Kort sagt hjälper det dig att se vem du har kontaktat, vad som sagts och vad nästa steg är.
+
+Syftet är att skapa överblick och struktur i ett arbete som annars lätt blir rörigt. När alla i gruppen fyller i sina kontakter på ett konsekvent sätt går det snabbt att se hur arbetet ligger till: vilka företag som är kontaktade, vilka som väntar på återkoppling och var nya möjligheter finns.
+
+I stora företag är CRM ofta avancerade databaser med tusentals poster, filter och automatiska funktioner. Vi behöver inte den nivån av komplexitet. I vårt arbete räcker det långt med ett enkelt men välskött Excel-ark – så länge det används noggrant och uppdateras löpande.
+
+Det är just ordning och konsekvens som gör systemet värdefullt. Ett välskött CRM visar tydligt vad som händer, vem som gör vad och hur nära ni är era mål. Det blir en gemensam arbetsyta där alla kan se helheten och bidra till att arbetet går framåt.
+
+God CRM-hygien – så håller du systemet levande och användbart
+Ett CRM är mer än bara ett register – det är gruppens gemensamma minne. Här samlas allt ni bygger upp: kontakter, dialoger, företag, anteckningar och små detaljer som annars riskerar att försvinna. När alla fyller i sina poster tydligt och konsekvent blir CRM inte bara ett verktyg för att hålla ordning, utan ett levande dokument över er gemensamma insats.
+
+God CRM-hygien handlar om struktur, tydlighet och kontinuitet. Informationen ska gå att förstå även för någon som inte var med när posten skapades – det ska vara möjligt för vem som helst att ta vid utan att behöva gissa sig fram.
+
+Så här ser god CRM-hygien ut i praktiken
+
+INMATAD (DATUM)
+Skriv alltid det exakta datumet när posten först skapades. Det visar hur aktuell informationen är och gör det lätt att följa upp.
+
+Bra exempel: 2025-07-12
+Dåligt exempel: I juli nån gång
+
+HITTADES AV (RESEARCHER)
+Här skriver du vem som hittade företaget. Researcher ansvarar för att informationen är korrekt, att företaget existerar, att rollen är relevant och att kontaktuppgifterna stämmer.
+
+Exempel: Emma L
+
+Om informationen hämtats från LinkedIn, företagets hemsida eller en tidigare kontakt, notera gärna det i anteckningen.
+
+BEARBETAS AV (KOMMUNIKATÖR)
+Det här fältet visar vem i gruppen som driver dialogen med företaget. Det är alltså inte en “ägare”, utan den person som just nu ansvarar för kontakten.
+
+Exempel: Jonas P
+
+Gruppen kommer gemensamt överens om vem som tar rollen som kommunikatör för varje företag. Det kan skifta under fasen – men det är viktigt att CRM alltid visar vem som har dialogen just nu.
+
+FÖRETAG | KONTAKTPERSON | TITEL/ROLL
+Fyll i allt detta så tydligt som möjligt. Ett gott exempel: 
+
+Företag: Advenica AB
+Kontaktperson: Henrik Dahl
+Titel: Senior Software Engineer
+
+Skriv alltid hela namn och korrekta titlar. Vi rekommenderar att du kopierar namn och titel från kontaktpersonens LinkedIn-profil om du är osäker. Undvik förkortningar och egna varianter. CRM ska kunna förstås även om någon ny i teamet tar över.
+
+TELEFON | MEJL
+Dubbelkolla alltid att uppgifterna stämmer innan du sparar posten under TELEFON och MEJL. Om någon uppgift saknas, skriv “Ej funnen” istället för att lämna fältet tomt. Det visar att du redan har sökt utan resultat – och sparar tid för nästa reseracher som annars kanske skulle försöka leta upp samma information i onödan.
+
+ANTAL KONTAKTFÖRSÖK | UTFALL EFTER DIALOG
+Under ANTAL KONTAKTFÖRSÖK dokumenterar du hur många gånger har ni försökt nå ut till kontaktpersonen. Välj rätt alternativ genom rullgardinsmenyn och tänk på att en lead inte räknas som "död" förrän ni gjort tre kontaktförsök utan svar eller återkoppling. Kom också ihåg att inte lämna lösa trådar. Om en lead säger att de inte har tid när du ringer, svara att du förstår och kom med förslag på ny tid för återkoppling! 
+
+Du du väl får tag i någon och har en dialog med personen, ska du dokumentera UTFALL EFTER DIALOG, alltså vad resultatet av samtalet blev. Även här ska du välja det alternativ som passar bäst ur en rullgardinsmeny. Om du inte hittar rätt alternativ får du välja det som känns "minst fel", och förtydliga utfallet i en senare kolumn (anteckning). 
+
+ÅTERKOPPLING BOKAD | ANTECKNING
+Om du och kontaktpersonen kommer överens om en ny tid för återkoppling, sätt JA under ÅTERKOPPLING BOKAD. 
+
+Skriv sedan en ANTECKNING om när återkopplingen ska ske. Anteckningen är det mest värdefulla fältet i hela CRM, eftersom den står för det mjuka i dialogen, alltså det som bygger en relation. Utöver tid och datum för återkopplingen – ska du därför också notera andra saker från samtalet som kan vara värdefulla att komma ihåg.
+
+Exempel: Återkoppling bokad kl 10.00 den 2026-11-12. Satt illa till när jag ringde (tror VAB – skrikande barn i bakgrunden). Han var dock jättetrevlig och hann nämna att han själv pluggat YH en gång i tiden.”
+
+GOOD TO KNOW
+Efter en del bearbetning kan anteckningsfältet rymma ganska mycket text. Det är bra när man tar ett samtal i taget, men det kan göra det lite klurigt att få en bra översikt när man vill analysera sitt CRM i sin helhet. Därför använder vi fältet GOOD TO KNOW som ett komplement till anteckningarna vi gör. Här skriver du kortfattat de absolut viktigaste detaljerna om kontaktpersonen eller företaget, som kan vara bra att veta innan man lyfter luren. 
+
+Exempel:
+“Jobbar med open source.”
+“Får nya lokaler i september.”
+“Tidigare haft LIA från Chas.”
+
+En välskött CRM ger gruppen kraft
+När ert CRM har god hygien känns det rent, pålitligt och levande. Alla poster går att tolka oavsett vem som läser, inga fält står tomma, och varje rad i arket berättar en liten del av historien om ert gemensamma arbete. Att hantera CRM ordentligt handlar om att bygga värde över tid. Ett välfyllt, städat och konsekvent CRM är inte bara en praktikalitet. Det gör jobbet mycket roligare för er som grupp och ger energi. Se därför till att behandla ert kära CRM med den respekt det förtjänar, det kommer löna sig!

@@ -1,0 +1,267 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============= ANVÄNDARE & AUTENTISERING =============
+
+enum Role {
+  STUDENT      // Studerande
+  ADMIN        // Backoffice/Administratör
+  TEACHER      // Utbildare
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  image         String?
+  role          Role      @default(STUDENT)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relationer
+  careerGroupId String?
+  careerGroup   CareerGroup?   @relation(fields: [careerGroupId], references: [id])
+  progression   Progression?
+  leads         Lead[]
+  liaPlacement  LiaPlacement?
+  messages      Message[]      @relation("ReceivedMessages")
+  sentMessages  Message[]      @relation("SentMessages")
+
+  // NextAuth
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ============= CAREER GRUPPER & UTBILDNINGAR =============
+
+model Education {
+  id            String        @id @default(cuid())
+  name          String        // Ex: "Fullstack Developer", "UX Designer"
+  description   String?
+  careerGroups  CareerGroup[]
+  createdAt     DateTime      @default(now())
+}
+
+model CareerGroup {
+  id             String          @id @default(cuid())
+  name           String          // Ex: "Stockholm FAS25"
+  region         String          // Ex: "Stockholm", "Malmö", "Göteborg"
+  educationId    String
+  education      Education       @relation(fields: [educationId], references: [id])
+  members        User[]
+  phaseSchedules PhaseSchedule[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+}
+
+// Fas-schema per utbildningsgrupp med start- och slutdatum
+model PhaseSchedule {
+  id            String      @id @default(cuid())
+  careerGroupId String
+  careerGroup   CareerGroup @relation(fields: [careerGroupId], references: [id], onDelete: Cascade)
+  phase         PhaseNumber
+  startDate     DateTime
+  endDate       DateTime
+  deadline      DateTime?   // Deadline för att klara fasen (t.ex. LIA-deadline i FAS 3)
+  createdAt     DateTime    @default(now())
+
+  @@unique([careerGroupId, phase])
+}
+
+// ============= PROGRESSION & FASER =============
+
+enum PhaseNumber {
+  PHASE_1  // Intro
+  PHASE_2  // Nätverkande
+  PHASE_3  // LIA-sök
+  PHASE_4  // Jobb-sök
+}
+
+model Progression {
+  id            String          @id @default(cuid())
+  userId        String          @unique
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  currentPhase  PhaseNumber     @default(PHASE_1)
+  milestones    MilestoneProgress[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+}
+
+model Milestone {
+  id          String              @id @default(cuid())
+  name        String              // Ex: "Career Workshop 1", "Big Bang Day"
+  description String?
+  phase       PhaseNumber
+  deadline    DateTime?
+  progress    MilestoneProgress[]
+  createdAt   DateTime            @default(now())
+}
+
+model MilestoneProgress {
+  id            String      @id @default(cuid())
+  progressionId String
+  progression   Progression @relation(fields: [progressionId], references: [id], onDelete: Cascade)
+  milestoneId   String
+  milestone     Milestone   @relation(fields: [milestoneId], references: [id])
+  completed     Boolean     @default(false)
+  completedAt   DateTime?
+  comment       String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@unique([progressionId, milestoneId])
+}
+
+// ============= FÖRETAG & KONTAKTER =============
+
+model Company {
+  id            String        @id @default(cuid())
+  name          String
+  industry      String?       // Ex: "SaaS", "Fintech", "Konsult"
+  city          String
+  size          String?       // Ex: "1-10", "11-50", "51-200", "200+"
+  website       String?
+  description   String?
+  contacts      Contact[]
+  leads         Lead[]
+  liaPlacements LiaPlacement[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model Contact {
+  id          String    @id @default(cuid())
+  name        String
+  title       String?   // Ex: "CTO", "HR Manager"
+  email       String?
+  phone       String?
+  linkedIn    String?
+  companyId   String
+  company     Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  leads       Lead[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+// ============= LEADS & CRM =============
+
+enum LeadStatus {
+  NEW           // Nytt lead
+  CONTACTED     // Kontaktad
+  IN_DIALOG     // I dialog
+  MEETING_BOOKED // Möte bokat
+  VISITED       // Studiebesök genomfört
+  LIA_OFFERED   // LIA erbjuden
+  CLOSED_WON    // Lyckad (LIA/jobb)
+  CLOSED_LOST   // Avslutad utan resultat
+}
+
+model Lead {
+  id              String      @id @default(cuid())
+  userId          String
+  user            User        @relation(fields: [userId], references: [id])
+  companyId       String
+  company         Company     @relation(fields: [companyId], references: [id])
+  contactId       String?
+  contact         Contact?    @relation(fields: [contactId], references: [id])
+  status          LeadStatus  @default(NEW)
+  contactAttempts Int         @default(0)
+  lastContactAt   DateTime?
+  notes           String?     @db.Text
+  nextFollowUp    DateTime?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
+
+// ============= LIA-PLATSER =============
+
+enum LiaStatus {
+  PENDING       // Väntar på godkännande
+  APPROVED      // Godkänd
+  ACTIVE        // Pågående
+  COMPLETED     // Avslutad
+  REJECTED      // Avvisad
+}
+
+model LiaPlacement {
+  id            String      @id @default(cuid())
+  userId        String      @unique
+  user          User        @relation(fields: [userId], references: [id])
+  companyId     String
+  company       Company     @relation(fields: [companyId], references: [id])
+  supervisor    String      // Handledarens namn
+  supervisorEmail String?
+  startDate     DateTime?
+  endDate       DateTime?
+  status        LiaStatus   @default(PENDING)
+  feedback      String?     @db.Text
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+// ============= MEDDELANDEN & NOTIFIKATIONER =============
+
+model Message {
+  id          String    @id @default(cuid())
+  senderId    String
+  sender      User      @relation("SentMessages", fields: [senderId], references: [id])
+  receiverId  String
+  receiver    User      @relation("ReceivedMessages", fields: [receiverId], references: [id])
+  subject     String?
+  content     String    @db.Text
+  read        Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+}
+
+model Notification {
+  id        String    @id @default(cuid())
+  userId    String
+  title     String
+  message   String
+  type      String    // "deadline", "reminder", "info"
+  read      Boolean   @default(false)
+  createdAt DateTime  @default(now())
+}
