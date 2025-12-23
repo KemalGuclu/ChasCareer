@@ -1,0 +1,308 @@
+ällor till leads – ett urval av bra starting points
+ 
+
+ChatGPT Image 6 okt. 2025 23_21_01.png
+
+NATIONELLA & DISTANSVÄNLIGA KÄLLOR
+
+Allabolag — https://www.allabolag.seLinks to an external site. 
+
+Proff — https://www.proff.seLinks to an external site. 
+
+Bolagsverket — https://bolagsverket.seLinks to an external site. 
+
+Eniro Företag — https://www.eniro.se/foretagLinks to an external site. 
+
+Google Maps (sök “IT-konsult / software company / web agency” + stad) — https://www.google.com/mapsLinks to an external site. 
+
+Crunchbase (filtrera Sweden + City) — https://www.crunchbase.comLinks to an external site. 
+
+Dealroom Nordics — https://app.dealroom.co/regions/nordicsLinks to an external site. 
+
+Almi Invest – portfölj per region — https://www.almiinvest.se/vara-bolag/Links to an external site. 
+
+Industrifonden – portfolio — https://industrifonden.com/portfolioLinks to an external site. 
+
+Creandum – portfolio — https://www.creandum.com/portfolio/Links to an external site. 
+
+Northzone – portfolio — https://northzone.com/portfolio/Links to an external site. 
+
+The Hub – jobb & företagsprofiler — https://thehub.ioLinks to an external site. 
+
+LinkedIn Jobs — https://www.linkedin.com/jobs/Links to an external site.
+
+Arbetsförmedlingen/Platsbanken — https://arbetsformedlingen.se/platsbankenLinks to an external site. 
+
+Meetup (sök stack + stad) — https://www.meetup.comLinks to an external site. 
+
+Eventbrite (sök “tech” + stad) — https://www.eventbrite.seLinks to an external site. 
+
+Cybernode (svenskt cyberkluster) — https://www.cybernode.seLinks to an external site. 
+
+Offentliga Jobb (kommun/region/stat) — https://www.offentligajobb.seLinks to an external site. 
+
+Visma Opic (upphandlingar/leverantörer) — https://www.opic.com/sv/Links to an external site. 
+
+Remote OK (remote EMEA/Sverige) — https://remoteok.comLinks to an external site. 
+
+We Work Remotely — https://weworkremotely.comLinks to an external site. 
+
+GitLab – remote-first — https://about.gitlab.com/jobs/Links to an external site. 
+
+Automattic – remote-first — https://automattic.com/work-with-us/Links to an external site. 
+
+
+MALMÖ (inkl. Lund): Telekom/handset-arv (Lund), kamera/vision, spel, e-handel, medtech. Hög efterfrågan på JS/Frontend, .NET/Java, embedded, cloud/cyber.
+
+Minc (inkubator) — https://minc.seLinks to an external site. 
+
+Media Evolution (community) — https://www.mediaevolution.seLinks to an external site. 
+
+Ideon Science Park (Lund) — https://ideon.seLinks to an external site. 
+
+Mobile Heights (ICT-kluster) — https://mobileheights.orgLinks to an external site.  
+
+Medicon Village (Lund) — https://www.mediconvillage.seLinks to an external site. 
+
+Invest in Skåne – Tech — https://investinskane.com/en/invest/business-sectors-in-skane/techLinks to an external site. 
+
+Foo Café Malmö (events) — https://foocafe.orgLinks to an external site. 
+
+The Hub – Malmö — https://thehub.io/jobs?location=malm%C3%B6Links to an external site. 
+
+Meetup – Malmö — https://www.meetup.com/find/?location=malm%C3%B6Links to an external site. 
+
+Ericsson (Lund) – careers — https://www.ericsson.com/en/careersLinks to an external site. 
+
+Axis Communications – careers — https://www.axis.com/en/careersLinks to an external site. 
+
+Tetra Pak – careers — https://www.tetrapak.com/careersLinks to an external site. 
+
+Ubisoft Massive – careers — https://www.massive.se/career/Links to an external site. 
+
+King Malmö – careers — https://careers.king.com/locations/malmo/Links to an external site. 
+
+Boozt – careers — https://careers.booztgroup.comLinks to an external site. 
+
+IKEA Digital (regionen) – jobs — https://jobs.ikea.com/en/Links to an external site. 
+
+Malmö stad Näringsliv — https://malmo.se/NaringslivLinks to an external site. 
+
+
+STOCKHOLM: Sveriges största tech-hub (fintech, spel, SaaS, konsult, bank/myndighet). Hög efterfrågan på fullstack, data/ML, cloud, cyber.
+
+Norrsken (hub/portfolio/event) — https://www.norrsken.orgLinks to an external site. 
+
+STING – Companies — https://sting.co/companies/Links to an external site. 
+
+Kista Science City — https://kista.comLinks to an external site. 
+
+Invest Stockholm – databaser — https://www.investstockholm.com/databasesLinks to an external site. 
+
+Things (HW/IoT) — https://www.thingsstockholm.comLinks to an external site. 
+
+Epicenter Stockholm (scaleup community) — https://epicenterstockholm.comLinks to an external site. 
+
+The Hub – Stockholm — https://thehub.io/jobs?location=stockholmLinks to an external site. 
+
+Meetup – Stockholm — https://www.meetup.com/find/?location=stockholmLinks to an external site. 
+
+STHLM Tech Meetup — https://sthlmtech.comLinks to an external site. 
+
+Spotify – careers — https://www.lifeatspotify.comLinks to an external site. 
+
+Klarna – careers — https://www.klarna.com/careers/Links to an external site. 
+
+Google Sweden – Stockholm — https://careers.google.com/locations/stockholm/Links to an external site. 
+
+Microsoft Sverige – careers — https://careers.microsoft.comLinks to an external site. 
+
+Ericsson (Kista) – careers — https://www.ericsson.com/en/careersLinks to an external site. 
+
+SEB – karriär — https://seb.se/om-seb/karriarLinks to an external site. 
+
+Swedbank – career — https://www.swedbank.com/careerLinks to an external site. 
+
+Paradox Interactive – careers — https://paradoxinteractive.com/careersLinks to an external site. 
+
+DICE (EA) – jobs Stockholm — https://ea.gr8people.com/jobs?location=StockholmLinks to an external site. 
+
+
+GÖTEBORG: Fordon/mobilitet, telekom, life science, marint. Hög efterfrågan på C/C++ embedded, AI/autonomous, .NET/Java, cloud/cyber.
+
+Lindholmen Science Park — https://www.lindholmen.seLinks to an external site. 
+
+Chalmers Ventures – portfolio — https://chalmersventures.com/portfolio/Links to an external site. 
+
+Founders Loft (inkubator) — https://foundersloft.seLinks to an external site. 
+
+Connect Väst (scaleups/investor pitch) — https://connectsverige.se/vast/Links to an external site. 
+
+The Hub – Göteborg — https://thehub.io/jobs?location=gothenburgLinks to an external site. 
+
+Meetup – Göteborg — https://www.meetup.com/find/?location=gothenburgLinks to an external site. 
+
+Volvo Cars – careers — https://volvocars.com/careersLinks to an external site.  
+
+Volvo Group – careers — https://www.volvogroup.com/en/careers.htmlLinks to an external site. 
+
+Polestar – careers — https://www.polestar.com/careers/Links to an external site. 
+
+Zenseact – careers — https://www.zenseact.com/careersLinks to an external site. 
+
+Ericsson – careers — https://www.ericsson.com/en/careersLinks to an external site. 
+
+AstraZeneca – careers — https://careers.astrazeneca.comLinks to an external site. 
+
+
+LINKÖPING: Mjärdevi/Science Park med försvar, medtech, telekom, automation. Efterfrågan på embedded C/C++, .NET/Java, JS/Frontend, cyber.
+
+Linköping Science Park — https://linkopingsciencepark.seLinks to an external site. 
+
+LEAD (inkubator) — https://www.lead.seLinks to an external site. 
+
+East Sweden (regionalt) — https://eastsweden.seLinks to an external site. 
+
+The Hub – Linköping — https://thehub.io/jobs?location=link%C3%B6pingLinks to an external site. 
+
+Meetup – Linköping — https://www.meetup.com/find/?location=link%C3%B6pingLinks to an external site. 
+
+Ericsson – careers — https://www.ericsson.com/en/careersLinks to an external site. 
+
+Sectra – careers — https://careers.sectra.comLinks to an external site. 
+
+Saab – career — https://saab.com/careerLinks to an external site. 
+
+Combitech – karriär — https://combitech.se/karriarLinks to an external site. 
+
+Toyota Material Handling (Mjölby) – careers — https://toyota-forklifts.eu/join-the-team/Links to an external site. 
+
+
+SUNDSVALL: Offentlig IT-tyngd (Bolagsverket, SPV), stark konsultnärvaro, regionala startups. Efterfrågan på .NET/Java, Frontend/JS, cyber.
+
+BizMaker (inkubator) — https://bizmaker.seLinks to an external site. 
+
+Bron Innovation (IT-kluster) — https://broninnovation.seLinks to an external site. 
+
+Good Tech Conference — https://goodtechconference.comLinks to an external site. 
+
+The Hub – Sundsvall — https://thehub.io/jobs?location=sundsvallLinks to an external site. 
+
+Meetup – Sundsvall — https://www.meetup.com/find/?location=sundsvallLinks to an external site. 
+
+Bolagsverket – karriär — https://www.bolagsverket.se/om/karriarLinks to an external site. 
+
+SPV – jobba hos oss — https://www.spv.se/om-spv/jobba-hos-ossLinks to an external site. 
+
+CGI – karriär — https://www.cgi.com/se/sv/karriarLinks to an external site. 
+
+Tietoevry – careers — https://www.tietoevry.com/careers/Links to an external site. 
+
+Sogeti – career — https://career.sogeti.seLinks to an external site. 
+
+
+UMEÅ: Universitetsdrivet; SaaS/media, spel, konsulter. Efterfrågan på JS/Frontend, .NET/Java, C/C++ (sim/graphics), cyber.
+
+Uminova Innovation — https://www.uminovainnovation.seLinks to an external site. 
+
+Umeå Biotech Incubator — https://www.ubi.seLinks to an external site. 
+
+Umeå Science Park — https://umeasciencepark.seLinks to an external site. 
+
+eXpression Umeå — https://expressionumea.seLinks to an external site. 
+
+The Hub – Umeå — https://thehub.io/jobs?location=ume%C3%A5Links to an external site. 
+
+Meetup – Umeå — https://www.meetup.com/find/?location=ume%C3%A5Links to an external site. 
+
+Umeå Tech Arena (events) — https://www.uminovainnovation.se/events/Links to an external site. 
+
+Paradox Arctic – careers — https://paradoxinteractive.com/careersLinks to an external site. 
+
+Codemill – career — https://www.codemill.se/careerLinks to an external site. 
+
+Tietoevry – careers — https://www.tietoevry.com/careers/Links to an external site. 
+
+
+SKELLEFTEÅ: Northvolt-ledd etableringsboom (industri 4.0), spel via Arctic Game, nya startups. Efterfrågan på embedded/automation, fullstack, OT-security.
+
+The Great Northern (hub) — https://thegreatnorthern.orgLinks to an external site. 
+
+Skellefteå Science City — https://skellefteasciencecity.seLinks to an external site. 
+
+Arctic Business (inkubator) — https://abi.seLinks to an external site. 
+
+Arctic Game (kluster) — https://arcticgamelab.comLinks to an external site. 
+
+The Hub – Skellefteå — https://thehub.io/jobs?location=skellefte%C3%A5Links to an external site. 
+
+Meetup – Skellefteå — https://www.meetup.com/find/?location=skellefte%C3%A5Links to an external site. 
+
+Northvolt – careers — https://northvolt.com/careersLinks to an external site. 
+
+Gold Town Games – careers — https://www.goldtowngames.com/careersLinks to an external site. 
+
+House Be (nätverk/cowork) — https://www.housebe.seLinks to an external site. 
+
+
+LULEÅ: LTU, rymd/datacenter, IT-konsulter. Efterfrågan på C/C++ embedded, fullstack, data/AI, cyber.
+
+Arctic Business (HQ, ESA-BIC) — https://abi.seLinks to an external site. 
+
+Luleå Science Park — https://luleasciencepark.seLinks to an external site.  
+
+LTU Business — https://ltubusiness.seLinks to an external site. 
+
+Luleå Näringsliv — https://luleanaringsliv.seLinks to an external site.  
+
+The Hub – Luleå — https://thehub.io/jobs?location=lule%C3%A5Links to an external site. 
+
+Meetup – Luleå — https://www.meetup.com/find/?location=lule%C3%A5Links to an external site. 
+
+Tietoevry – careers — https://www.tietoevry.com/careers/Links to an external site. 
+
+Sogeti – career — https://career.sogeti.seLinks to an external site. 
+
+
+JÖNKÖPING: E-handel/logistik, Husqvarna, konsulter; växande offentlig IT. Efterfrågan på .NET/Java, JS/Frontend, embedded/IoT.
+
+Science Park Jönköping — https://sciencepark.seLinks to an external site. 
+
+Handelskammaren Jönköping — https://www.handelskammarenjkpg.seLinks to an external site. 
+
+Jönköpings kommun – Näringsliv — https://jonkoping.se/naringslivLinks to an external site. 
+
+The Hub – Jönköping — https://thehub.io/jobs?location=j%C3%B6nk%C3%B6pingLinks to an external site. 
+
+Meetup – Jönköping — https://www.meetup.com/find/?location=j%C3%B6nk%C3%B6pingLinks to an external site. 
+
+Husqvarna Group – career — https://www.husqvarnagroup.com/careerLinks to an external site. 
+
+Knowit – karriär — https://www.knowit.se/karriar/Links to an external site. 
+
+Nexer – career — https://nexergroup.com/careerLinks to an external site. 
+
+AFRY – career — https://afry.com/en/careerLinks to an external site. 
+
+Region Jönköpings län – jobb — https://rjl.se/jobb-och-karriar/Links to an external site. 
+
+
+PITEÅ: Kreativa näringar, energi/cleantech, spel; små team + mycket remote. Efterfrågan på JS/Frontend, .NET/Java, embedded, remote-vänligt.
+
+Piteå Science Park — https://piteasciencepark.seLinks to an external site. 
+
+Go Business (inkubator) — https://gobusiness.seLinks to an external site. 
+
+Arctic Game (nod) — https://arcticgamelab.comLinks to an external site. 
+
+Piteå kommun – Näringsliv — https://www.pitea.se/naringslivLinks to an external site. 
+
+The Hub – Norrbotten (filtrera Piteå) — https://thehub.io/jobs?country=sweden&region=norrbottenLinks to an external site. 
+
+Meetup – Piteå — https://www.meetup.com/find/?location=pite%C3%A5Links to an external site. 
+
+Region Norrbotten – jobb — https://www.norrbotten.se/sv/jobba-hos-oss/Links to an external site. 
+
+(Remote) Remote OK — https://remoteok.comLinks to an external site. 
+
+(Remote) We Work Remotely — https://weworkremotely.comLinks to an external site. 

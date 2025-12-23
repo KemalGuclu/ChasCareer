@@ -1,0 +1,147 @@
+Inför Career workshop 4: Arbetsintervju & Arbetsprov
+ChatGPT Image 15 sep. 2025 06_57_57.png
+
+Syfte med workshopen: Varför vi gör detta
+När du väl blivit kallad till intervju eller arbetsprov har du redan klarat första gallringen – men det är nu du verkligen måste visa vad du går för.
+Många juniorer faller inte på bristande kunskap, utan på att de är oförberedda på själva processen. En intervju är inte ett vanligt samtal, utan en strukturerad situation där arbetsgivaren vill kunna jämföra kandidater på lika villkor. Den som inte vet hur man strukturerar sina svar eller lyfter sina styrkor riskerar att inte göra sig själv rättvisa.
+
+Arbetsprov är minst lika viktiga. Inom tech vill arbetsgivare nästan alltid se hur du löser problem i praktiken – genom kodtester, designuppgifter, säkerhetsövningar eller problemlösning i realtid. Den som förstår de vanligaste formaten och övar på att resonera högt, disponera sin tid och visa sin process har ett tydligt försprång.
+
+Att träna på intervjuer och arbetsprov handlar därför inte bara om att prestera bättre – det handlar om att minska risken att falla på onödiga misstag, öka tryggheten och bli mer konkurrenskraftig. Kort sagt: det kan vara skillnaden mellan ett nej tack och en fot in i branschen.
+
+ 
+
+
+Mål med workshopen
+Målet med workshopen är att du ska lämna passet med:
+
+En tydlig förståelse för hur intervjuer och arbetsprov inom IT-branschen är upplagda.
+
+Förmågan att strukturerat besvara vanliga intervjufrågor.
+
+Erfarenhet av att lösa ett enklare arbetsprov och reflektera över processen.
+
+Ökad trygghet i att resonera högt och visa din tankegång i skarpa situationer.
+
+ 
+
+ChatGPT Image 15 sep. 2025 07_35_44.png
+
+Del 1 – Intervjuer
+
+Input: Lär dig hur du lyckas på en intervju
+Börja med att ta del av material som förklarar hur du förbereder dig inför intervjuer – både mentalt och praktiskt:
+
+Läs: Att tänka på vid arbetsintervjuLinks to an external site.
+
+Se:
+8 saker du aldrig ska göra under en intervjuLinks to an external site.
+
+
+Se:
+De 10 vanligaste frågorna på en arbetsintervjuLinks to an external site.
+
+
+
+Output: Reflektera över dina insikter
+Skriv kort (½–1 sida):
+
+Vad kändes mest utmanande med intervjuer?
+
+Vilka typer av frågor tror du att du behöver träna mest på?
+
+Har du någon tidigare erfarenhet av intervjuer (jobb, LIA, praktik)? Hur kändes det?
+
+Förbered 2–3 exempel på styrkor eller erfarenheter du kan använda som svar i en intervju.
+
+Skriv stödord till en kort presentation (30 sekunder) av dig själv som du skulle kunna använda i början av en intervju, som svar på den klassiska uppmaningen: Vill du berätta lite om dig själv? 
+
+ 
+
+ChatGPT Image 15 sep. 2025 07_39_24.png
+
+
+Del 2 – Arbetsprov
+ 
+
+Input: Lär dig hur arbetsprov går till i techbranschen
+Ta del av material som visar hur olika typer av tester kan se ut – för utvecklare, designers och cybersäkerhetsspecialister:
+
+Läs: Arbetsprov inom tech – vad du kan förvänta digLinks to an external site.
+
+Se: Två filmerLinks to an external site. i dokumentet (välj de som passar din inriktning: programmering, UX/UI eller cybersäkerhet)
+
+
+Output: Skapa och genomför ett eget miniprov med hjälp av AI
+Steg 1 – Generera ett prov med AI
+Använd ett AI-verktyg (t.ex. ChatGPT) för att skapa en realistisk övningsuppgift. Anpassa prompten efter din roll:
+
+Programmering:
+“Ge mig en kodningsuppgift på nybörjarnivå i Python, som liknar de som kan förekomma i en teknisk intervju. Uppgiften ska ta max 30 minuter att lösa och handla om datastrukturer eller algoritmer.”
+
+UX/UI-design:
+“Ge mig en designutmaning i form av en enkel take-home-uppgift för en junior UX-designer. Uppgiften ska kunna lösas på max 1 timme och inkludera ett scenario där användarflödet är i fokus.”
+
+IT/Cybersäkerhet:
+“Ge mig ett realistiskt scenario för en teknisk intervju med en junior cybersäkerhetstekniker. Scenariot ska handla om en anställd som råkar ut för phishing och jag ska beskriva steg för steg hur jag skulle agera. Uppgiften ska ta max 30 minuter att analysera.”
+
+Undvik vaga promptar som “Ge mig ett svårt test” – de ger otydliga resultat.
+
+Steg 2 – Lös uppgiften
+
+Sätt en timer och genomför uppgiften inom din valda tidsram.
+
+Fokusera inte på att få allt perfekt – syftet är att visa hur du tänker och angriper problemet.
+
+Steg 3 – Reflektera
+Skriv ner 5–10 meningar om:
+
+Hur fungerade din AI-prompt – blev uppgiften lagom?
+
+Vad var lätt respektive svårt?
+
+Hur tänkte du under arbetet?
+
+Vad tar du med dig till workshopen?
+
+ 
+
+
+Del 3 – Förbered frågor
+
+Input: Förstå arbetsgivarens perspektiv
+Fundera på hur företag utvärderar kandidater. Läs korta guider eller lyssna på rekryterare som berättar vad de tittar efter i arbetsprov.
+
+
+Output: Skapa egna frågor till diskussion
+Förbered 2–3 frågor som du själv skulle vilja ställa till en arbetsgivare om deras arbetsprov, t.ex.:
+
+Hur mycket tid brukar man få?
+
+Bedömer ni mest slutresultatet eller processen?
+
+Är det vanligt att man får feedback efteråt?
+
+ 
+
+
+Under workshopen
+Under workshopen kommer du att:
+
+Diskutera dina reflektioner om intervjuer och arbetsprov i mindre grupper.
+
+Testa att genomföra korta övningsmoment (intervjufrågor eller kod-/design-/säkerhetsscenarier).
+
+Dela med dig av erfarenheter och reflektioner från ditt AI-genererade miniprov.
+
+Öva på att resonera högt och visa hur du tänker – precis som vid ett riktigt arbetsprov.
+
+ChatGPT Image 15 sep. 2025 07_44_01.png
+
+Checklista – att ta med till workshopen
+
+Material	Vad du ska ha gjort	Ta med till workshop	Förväntad nivå av förberedelse
+Instuderingsmaterial	Läs och se allt material om intervjuer och arbetsprov	Nej	Förstå processen och vad som bedöms
+Reflektion	Skriftliga anteckningar (½–1 sida)	Ja	Genomtänkt och tydligt formulerat
+AI-miniprov	Genererat, genomfört och reflekterat	Ja	Kod, skiss eller text redo att visa
+Frågor till arbetsgivare	Minst 2–3 frågor	Ja	Förberedda för diskussion i grupp
