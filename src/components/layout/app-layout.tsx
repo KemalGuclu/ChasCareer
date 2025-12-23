@@ -37,11 +37,12 @@ const navigation = {
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
     { name: "Min Progression", href: "/dashboard/progression", icon: Target },
     { name: "Mina Leads", href: "/dashboard/leads", icon: Users },
+    { name: "Min LIA", href: "/dashboard/lia", icon: Briefcase },
   ],
   admin: [
     { name: "Studerande", href: "/dashboard/students", icon: GraduationCap },
     { name: "Företag", href: "/dashboard/companies", icon: Building2 },
-    { name: "LIA-platser", href: "/dashboard/lia", icon: Briefcase },
+    { name: "LIA-platser", href: "/dashboard/lia-management", icon: Briefcase },
     { name: "Rapporter", href: "/dashboard/reports", icon: FileText },
   ],
   settings: [
