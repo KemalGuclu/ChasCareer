@@ -157,6 +157,11 @@ model MilestoneProgress {
 
 // ============= FÖRETAG & KONTAKTER =============
 
+enum CompanyStatus {
+  PENDING   // Föreslagen av student, väntar på godkännande
+  APPROVED  // Godkänd av admin/teacher
+}
+
 model Company {
   id            String        @id @default(cuid())
   name          String
@@ -165,6 +170,8 @@ model Company {
   size          String?       // Ex: "1-10", "11-50", "51-200", "200+"
   website       String?
   description   String?
+  status        CompanyStatus @default(APPROVED)
+  suggestedById String?       // Vem som föreslog företaget
   contacts      Contact[]
   leads         Lead[]
   liaPlacements LiaPlacement[]
