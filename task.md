@@ -15,12 +15,12 @@
 ### Sprint 2-3: Dashboard
 - [x] Seed data för demo
 - [x] Admin dashboard med översikt
-- [/] Filtrering och sökning (studerandelista)
-- [ ] Studerande dashboard (markera moment)
+- [x] Filtrering och sökning (studerandelista)
+- [/] Studerande dashboard (markera moment)
 - [ ] Responsiv design
 
 ### Sprint 4-5: Processmodul
-- [ ] Fas-visualisering (FAS 1-4)
+- [/] Fas-visualisering (FAS 1-4)
 - [ ] Markera avklarade moment
 - [ ] Automatiska påminnelser
 
