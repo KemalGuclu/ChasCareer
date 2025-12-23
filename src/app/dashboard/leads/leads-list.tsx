@@ -467,8 +467,8 @@ export function LeadsList({ leads: initialLeads, companies, userId }: Props) {
 
       {/* Leads Table */}
       <Card>
-        <CardContent className="p-0">
-          <Table>
+        <CardContent className="p-0 overflow-x-auto">
+          <Table className="min-w-[600px]">
             <TableHeader>
               <TableRow>
                 <TableHead>Företag</TableHead>

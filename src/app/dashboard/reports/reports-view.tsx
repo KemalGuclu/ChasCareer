@@ -339,8 +339,8 @@ export function ReportsView({ students, careerGroups }: Props) {
                 <CardHeader>
                   <CardTitle>Leads</CardTitle>
                 </CardHeader>
-                <CardContent className="p-0">
-                  <Table>
+                <CardContent className="p-0 overflow-x-auto">
+                  <Table className="min-w-[400px]">
                     <TableHeader>
                       <TableRow>
                         <TableHead>Företag</TableHead>
@@ -459,8 +459,8 @@ export function ReportsView({ students, careerGroups }: Props) {
                     <CardHeader>
                       <CardTitle>Studerande i gruppen</CardTitle>
                     </CardHeader>
-                    <CardContent className="p-0">
-                      <Table>
+                    <CardContent className="p-0 overflow-x-auto">
+                      <Table className="min-w-[600px]">
                         <TableHeader>
                           <TableRow>
                             <TableHead>Namn</TableHead>

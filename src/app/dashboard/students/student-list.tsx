@@ -117,7 +117,7 @@ export function StudentList({ students, careerGroups }: Props) {
   return (
     <div className="space-y-4">
       {/* Statistik */}
-      <div className="grid gap-4 md:grid-cols-4">
+      <div className="grid gap-4 grid-cols-2 md:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Totalt</CardTitle>
@@ -174,7 +174,7 @@ export function StudentList({ students, careerGroups }: Props) {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4 md:grid-cols-4">
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
             {/* Sök */}
             <div className="relative">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -235,8 +235,8 @@ export function StudentList({ students, careerGroups }: Props) {
 
       {/* Tabell */}
       <Card>
-        <CardContent className="p-0">
-          <Table>
+        <CardContent className="p-0 overflow-x-auto">
+          <Table className="min-w-[600px]">
             <TableHeader>
               <TableRow>
                 <TableHead>Namn</TableHead>
