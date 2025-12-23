@@ -29,5 +29,5 @@
 - [x] Företagsdatabas med godkännandeflöde
 - [x] Student kan föreslå företag → Admin godkänner
 - [x] LIA-platshantering
-- [ ] Rapportering
+- [x] Rapportering
 - [ ] Slack-integration
