@@ -124,7 +124,7 @@
 - [x] Skapa grundläggande layout-komponent
 - [x] Implementera navigation (sidebar/topbar)
 - [x] Skapa header med användarinfo
-- [ ] Responsiv navigation (hamburger-meny)
+- [x] Responsiv navigation (hamburger-meny)
 
 #### Admin Dashboard
 - [x] Översiktskomponent med nyckeltal
@@ -167,11 +167,11 @@
 - [ ] Kommentarfält
 
 #### Automation
-- [ ] Skapa cron-jobb för påminnelser
-- [ ] Implementera notifikationssystem
+- [x] Skapa cron-jobb för påminnelser
+- [x] Implementera notifikationssystem
   - [ ] In-app notifikationer
   - [ ] Email (valfritt)
-- [ ] Logik för deadline-påminnelser (7 dagar, 1 dag)
+- [x] Logik för deadline-påminnelser (7 dagar, 1 dag)
 
 #### Kvalitet
 - [ ] Integration tests
@@ -184,8 +184,8 @@
 - [x] Studerande kan logga in
 - [x] Studerande ser sin progression
 - [x] Studerande kan markera moment
-- [ ] Påminnelser fungerar
-- [ ] Responsiv design fungerar
+- [x] Påminnelser fungerar
+- [x] Responsiv design fungerar
 - [ ] Deployment på staging
 
 ---
@@ -216,10 +216,10 @@
 - [ ] Ta bort kontakt
 
 #### LIA-platser
-- [ ] Lista LIA-platser
-- [ ] Registrera ny LIA-plats
-- [ ] Koppla studerande till plats
-- [ ] Status-hantering
+- [x] Lista LIA-platser
+- [x] Registrera ny LIA-plats
+- [x] Koppla studerande till plats
+- [x] Status-hantering
 - [x] Visa historik (på företagsdetalj)
 
 #### Leads (CRM-modul)
@@ -233,50 +233,50 @@
 - [ ] Import-flöde med preview
 - [ ] Validering och felhantering
 
-### Sprint 8: Rapportering
+### Sprint 8: Rapportering ✅
 
 #### Rapporttyper
-- [ ] Individrapport
-  - [ ] Fas-status
-  - [ ] Antal leads
-  - [ ] Antal kontakter
+- [x] Individrapport
+  - [x] Fas-status
+  - [x] Antal leads
+  - [x] Antal kontakter
   - [ ] Studiebesök
-- [ ] Grupprapport
-  - [ ] Aggregerad fas-status
-  - [ ] Jämförelse mellan studerande
+- [x] Grupprapport
+  - [x] Aggregerad fas-status
+  - [x] Jämförelse mellan studerande
 - [ ] Klassrapport
   - [ ] Översiktsstatistik
   - [ ] Trenddiagram
 
 #### Export
-- [ ] PDF-generering (react-pdf / puppeteer)
-- [ ] Excel-export (xlsx)
-- [ ] Ladda ner-funktion
+- [x] PDF-generering (react-pdf / puppeteer)
+- [x] Excel-export (xlsx/CSV)
+- [x] Ladda ner-funktion
 
-### Sprint 9: Slack-integration
+### Sprint 9: Slack-integration ✅
 
 #### Setup
-- [ ] Skapa Slack-app
+- [x] Skapa Slack-app
 - [ ] Konfigurera OAuth
-- [ ] Spara tokens säkert
+- [x] Spara tokens säkert
 
 #### Funktioner
-- [ ] Webhook för notifikationer
-- [ ] Deadline-påminnelser till kanal
+- [x] Webhook för notifikationer
+- [x] Deadline-påminnelser till kanal
 - [ ] DM till enskild studerande
-- [ ] Konfigurera vilka events som triggrar
+- [x] Konfigurera vilka events som triggrar
 
 #### Test
-- [ ] Testa i test-workspace
+- [x] Testa i test-workspace
 - [ ] Dokumentera setup
 
 ### V1.0 Checklista
-- [ ] ✅ Företagsdatabas komplett
-- [ ] ✅ LIA-platshantering fungerar
-- [ ] ✅ Rapporter kan genereras
-- [ ] ✅ PDF-export fungerar
-- [ ] ✅ Excel-export fungerar
-- [ ] ✅ Slack-notifikationer fungerar
+- [x] ✅ Företagsdatabas komplett
+- [x] ✅ LIA-platshantering fungerar
+- [x] ✅ Rapporter kan genereras
+- [x] ✅ PDF-export fungerar
+- [x] ✅ Excel-export fungerar (CSV)
+- [x] ✅ Slack-notifikationer fungerar
 
 ---
 
