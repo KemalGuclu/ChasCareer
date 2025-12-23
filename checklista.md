@@ -92,56 +92,56 @@
 
 ## Fas 3: MVP-utveckling
 
-### Sprint 1: Setup & Autentisering
+### Sprint 1: Setup & Autentisering ✅
 
 #### Projektsetup
-- [ ] Skapa Git-repo
-- [ ] Initiera Next.js projekt
-- [ ] Konfigurera TypeScript
-- [ ] Sätta upp ESLint & Prettier
-- [ ] Installera beroenden
+- [x] Skapa Git-repo
+- [x] Initiera Next.js projekt
+- [x] Konfigurera TypeScript
+- [x] Sätta upp ESLint & Prettier
+- [x] Installera beroenden
 
 #### Databas
-- [ ] Skapa databas (Supabase/PostgreSQL)
-- [ ] Definiera schema
-- [ ] Skapa migrations
-- [ ] Sätta upp ORM (Prisma/Drizzle)
+- [x] Skapa databas (Supabase/PostgreSQL)
+- [x] Definiera schema
+- [x] Skapa migrations
+- [x] Sätta upp ORM (Prisma/Drizzle)
 
 #### Autentisering
-- [ ] Konfigurera NextAuth.js
-- [ ] Implementera inloggning
-- [ ] Skapa middleware för skyddade routes
-- [ ] Testa rollbaserad åtkomst
+- [x] Konfigurera NextAuth.js
+- [x] Implementera inloggning
+- [x] Skapa middleware för skyddade routes
+- [x] Testa rollbaserad åtkomst
 
 #### CI/CD
 - [ ] Sätta upp GitHub Actions
 - [ ] Konfigurera preview deployments
 - [ ] Sätta upp staging-miljö (Vercel)
 
-### Sprint 2-3: Dashboard
+### Sprint 2-3: Dashboard ✅
 
 #### Layout
-- [ ] Skapa grundläggande layout-komponent
-- [ ] Implementera navigation (sidebar/topbar)
-- [ ] Skapa header med användarinfo
+- [x] Skapa grundläggande layout-komponent
+- [x] Implementera navigation (sidebar/topbar)
+- [x] Skapa header med användarinfo
 - [ ] Responsiv navigation (hamburger-meny)
 
 #### Admin Dashboard
-- [ ] Översiktskomponent med nyckeltal
-- [ ] Lista alla studerande
-- [ ] Implementera filtrering
-  - [ ] Per Career-grupp
-  - [ ] Per fas (1-4)
-  - [ ] Per status
-- [ ] Implementera sök
-- [ ] Visa detaljer för studerande
+- [x] Översiktskomponent med nyckeltal
+- [x] Lista alla studerande
+- [x] Implementera filtrering
+  - [x] Per Career-grupp
+  - [x] Per fas (1-4)
+  - [x] Per status
+- [x] Implementera sök
+- [x] Visa detaljer för studerande
 
 #### Studerande Dashboard
-- [ ] Visa aktuell fas
-- [ ] Visa progression (%)
-- [ ] Lista avklarade moment
-- [ ] Lista kommande moment/deadlines
-- [ ] Visa mål och status
+- [x] Visa aktuell fas
+- [x] Visa progression (%)
+- [x] Lista avklarade moment
+- [x] Lista kommande moment/deadlines
+- [x] Visa mål och status
 
 #### Utbildare Dashboard
 - [ ] Lista tilldelade grupper
@@ -151,18 +151,18 @@
 - [ ] Unit tests för komponenter
 - [ ] Responsiv testning
 
-### Sprint 4-5: Processmodul
+### Sprint 4-5: Processmodul ✅
 
 #### Datamodell
-- [ ] Skapa Progression-tabell
-- [ ] Skapa Milestone-tabell
-- [ ] Skapa Phase-tabell
-- [ ] Seed initial data (FAS 1-4, moment)
+- [x] Skapa Progression-tabell
+- [x] Skapa Milestone-tabell
+- [x] Skapa PhaseSchedule-tabell
+- [x] Seed initial data (FAS 1-4, moment)
 
 #### UI
-- [ ] Fas-visualisering (timeline/stepper)
-- [ ] Momentlista per fas
-- [ ] "Markera som klar"-knapp
+- [x] Fas-visualisering (timeline/stepper)
+- [x] Momentlista per fas
+- [x] "Markera som klar"-knapp
 - [ ] Bekräftelsedialog
 - [ ] Kommentarfält
 
@@ -178,40 +178,40 @@
 - [ ] E2E test för markera moment
 
 ### MVP Checklista
-- [ ] ✅ Användarhantering fungerar
-- [ ] ✅ Admin kan se alla studerande
-- [ ] ✅ Admin kan filtrera och söka
-- [ ] ✅ Studerande kan logga in
-- [ ] ✅ Studerande ser sin progression
-- [ ] ✅ Studerande kan markera moment
-- [ ] ✅ Påminnelser fungerar
-- [ ] ✅ Responsiv design fungerar
-- [ ] ✅ Deployment på staging
+- [x] Användarhantering fungerar
+- [x] Admin kan se alla studerande
+- [x] Admin kan filtrera och söka
+- [x] Studerande kan logga in
+- [x] Studerande ser sin progression
+- [x] Studerande kan markera moment
+- [ ] Påminnelser fungerar
+- [ ] Responsiv design fungerar
+- [ ] Deployment på staging
 
 ---
 
 ## Fas 4: V1.0 Features
 
-### Sprint 6-7: Företagsdatabas
+### Sprint 6-7: Företagsdatabas ✅
 
 #### Datamodell
-- [ ] Skapa Company-tabell
-- [ ] Skapa Contact-tabell
-- [ ] Skapa LIA_Placement-tabell
-- [ ] Skapa Lead-tabell
-- [ ] Definiera relationer
+- [x] Skapa Company-tabell
+- [x] Skapa Contact-tabell
+- [x] Skapa LIA_Placement-tabell
+- [x] Skapa Lead-tabell
+- [x] Definiera relationer
 
 #### Företag CRUD
-- [ ] Lista företag
-- [ ] Sök och filter (stad, bransch, storlek)
-- [ ] Visa företagsdetaljer
-- [ ] Lägg till företag
+- [x] Lista företag
+- [x] Sök och filter (stad, bransch, storlek)
+- [x] Visa företagsdetaljer
+- [x] Lägg till företag (med kontakt)
 - [ ] Redigera företag
-- [ ] Ta bort företag
+- [x] Ta bort företag (avvisa)
 
 #### Kontakter CRUD
-- [ ] Lista kontakter för ett företag
-- [ ] Lägg till kontakt
+- [x] Lista kontakter för ett företag
+- [x] Lägg till kontakt (vid företagsskapande)
 - [ ] Redigera kontakt
 - [ ] Ta bort kontakt
 
@@ -220,15 +220,16 @@
 - [ ] Registrera ny LIA-plats
 - [ ] Koppla studerande till plats
 - [ ] Status-hantering
-- [ ] Visa historik
+- [x] Visa historik (på företagsdetalj)
 
-#### Leads
-- [ ] Koppla lead till studerande
-- [ ] Statushantering
-- [ ] Synka med studerandes CRM
+#### Leads (CRM-modul)
+- [x] Koppla lead till studerande
+- [x] Statushantering
+- [x] Lägg till lead från befintliga företag
+- [x] Student kan föreslå nytt företag (PENDING)
+- [x] Admin godkänner/avvisar förslag
 
 #### Import
-- [ ] Inbyggd CRM-modul i databasen
 - [ ] Import-flöde med preview
 - [ ] Validering och felhantering
 
