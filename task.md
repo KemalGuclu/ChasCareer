@@ -17,12 +17,12 @@
 - [x] Admin dashboard med översikt
 - [x] Filtrering och sökning (studerandelista)
 - [x] Studerande dashboard (markera moment)
-- [ ] Responsiv design
+- [x] Responsiv design
 
 ### Sprint 4-5: Processmodul ✅
 - [x] Fas-visualisering (FAS 1-4)
 - [x] Markera avklarade moment
-- [ ] Automatiska påminnelser
+- [x] Automatiska påminnelser
 
 ## Fas 4: V1.0 Features
 - [x] CRM-modul (leads, kontakter)
