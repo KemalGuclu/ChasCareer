@@ -30,4 +30,4 @@
 - [x] Student kan föreslå företag → Admin godkänner
 - [x] LIA-platshantering
 - [x] Rapportering
-- [ ] Slack-integration
+- [x] Slack-integration
