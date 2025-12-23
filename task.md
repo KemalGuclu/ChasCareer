@@ -25,8 +25,8 @@
 - [ ] Automatiska påminnelser
 
 ## Fas 4: V1.0 Features
-- [/] CRM-modul (leads, kontakter)
-- [ ] Företagsdatabas
+- [x] CRM-modul (leads, kontakter)
+- [/] Företagsdatabas
 - [ ] LIA-platshantering
 - [ ] Rapportering
 - [ ] Slack-integration

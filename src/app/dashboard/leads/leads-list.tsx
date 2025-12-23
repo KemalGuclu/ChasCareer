@@ -86,9 +86,24 @@ export function LeadsList({ leads: initialLeads, companies, userId }: Props) {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [isSuggestDialogOpen, setIsSuggestDialogOpen] = useState(false);
   const [selectedCompany, setSelectedCompany] = useState<string>("");
   const [selectedContact, setSelectedContact] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // State för att föreslå nytt företag
+  const [newCompany, setNewCompany] = useState({
+    name: "",
+    industry: "",
+    city: "",
+    size: "",
+    website: "",
+    contactName: "",
+    contactTitle: "",
+    contactEmail: "",
+    contactPhone: "",
+  });
+  const [suggestSuccess, setSuggestSuccess] = useState(false);
 
   const selectedCompanyData = companies.find((c) => c.id === selectedCompany);
 
@@ -135,6 +150,33 @@ export function LeadsList({ leads: initialLeads, companies, userId }: Props) {
       }
     } catch (error) {
       console.error("Failed to add lead:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const suggestCompany = async () => {
+    if (!newCompany.name || !newCompany.city) return;
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch("/api/companies", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newCompany),
+      });
+
+      if (res.ok) {
+        setSuggestSuccess(true);
+        setNewCompany({ name: "", industry: "", city: "", size: "", website: "", contactName: "", contactTitle: "", contactEmail: "", contactPhone: "" });
+        // Stäng efter 2 sekunder
+        setTimeout(() => {
+          setIsSuggestDialogOpen(false);
+          setSuggestSuccess(false);
+        }, 2000);
+      }
+    } catch (error) {
+      console.error("Failed to suggest company:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -267,6 +309,16 @@ export function LeadsList({ leads: initialLeads, companies, userId }: Props) {
                         ))}
                       </SelectContent>
                     </Select>
+                    <button
+                      type="button"
+                      className="text-sm text-primary hover:underline mt-1"
+                      onClick={() => {
+                        setIsAddDialogOpen(false);
+                        setIsSuggestDialogOpen(true);
+                      }}
+                    >
+                      Hittar du inte företaget? Föreslå nytt →
+                    </button>
                   </div>
                   {selectedCompanyData && selectedCompanyData.contacts.length > 0 && (
                     <div className="space-y-2">
@@ -294,6 +346,119 @@ export function LeadsList({ leads: initialLeads, companies, userId }: Props) {
                     {isSubmitting ? "Lägger till..." : "Lägg till"}
                   </Button>
                 </DialogFooter>
+              </DialogContent>
+            </Dialog>
+
+            {/* Föreslå nytt företag Dialog */}
+            <Dialog open={isSuggestDialogOpen} onOpenChange={setIsSuggestDialogOpen}>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Föreslå nytt företag</DialogTitle>
+                </DialogHeader>
+                {suggestSuccess ? (
+                  <div className="py-8 text-center">
+                    <div className="text-green-600 text-lg font-medium">✓ Tack!</div>
+                    <p className="text-muted-foreground mt-2">
+                      Ditt förslag skickas till admin för godkännande.
+                    </p>
+                  </div>
+                ) : (
+                  <>
+                    <div className="space-y-4 py-4">
+                      <div className="space-y-2">
+                        <Label>Företagsnamn *</Label>
+                        <Input
+                          value={newCompany.name}
+                          onChange={(e) => setNewCompany((p) => ({ ...p, name: e.target.value }))}
+                          placeholder="Ex: Klarna"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <Label>Stad *</Label>
+                          <Input
+                            value={newCompany.city}
+                            onChange={(e) => setNewCompany((p) => ({ ...p, city: e.target.value }))}
+                            placeholder="Ex: Stockholm"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label>Bransch</Label>
+                          <Input
+                            value={newCompany.industry}
+                            onChange={(e) => setNewCompany((p) => ({ ...p, industry: e.target.value }))}
+                            placeholder="Ex: Fintech"
+                          />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <Label>Storlek</Label>
+                          <Select 
+                            value={newCompany.size} 
+                            onValueChange={(v) => setNewCompany((p) => ({ ...p, size: v }))}
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder="Antal anställda" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="1-10">1-10</SelectItem>
+                              <SelectItem value="11-50">11-50</SelectItem>
+                              <SelectItem value="51-200">51-200</SelectItem>
+                              <SelectItem value="200+">200+</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div className="space-y-2">
+                          <Label>Webbplats</Label>
+                          <Input
+                            value={newCompany.website}
+                            onChange={(e) => setNewCompany((p) => ({ ...p, website: e.target.value }))}
+                            placeholder="https://..."
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* Kontaktperson */}
+                      <div className="border-t pt-4 mt-2">
+                        <Label className="mb-2 block font-medium text-sm">Kontaktperson (valfritt)</Label>
+                        <div className="grid grid-cols-2 gap-3">
+                          <Input
+                            value={newCompany.contactName}
+                            onChange={(e) => setNewCompany((p) => ({ ...p, contactName: e.target.value }))}
+                            placeholder="Namn"
+                          />
+                          <Input
+                            value={newCompany.contactTitle}
+                            onChange={(e) => setNewCompany((p) => ({ ...p, contactTitle: e.target.value }))}
+                            placeholder="Titel"
+                          />
+                          <Input
+                            value={newCompany.contactEmail}
+                            onChange={(e) => setNewCompany((p) => ({ ...p, contactEmail: e.target.value }))}
+                            placeholder="Email"
+                          />
+                          <Input
+                            value={newCompany.contactPhone}
+                            onChange={(e) => setNewCompany((p) => ({ ...p, contactPhone: e.target.value }))}
+                            placeholder="Telefon"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <DialogFooter>
+                      <Button variant="outline" onClick={() => setIsSuggestDialogOpen(false)}>
+                        Avbryt
+                      </Button>
+                      <Button 
+                        onClick={suggestCompany} 
+                        disabled={!newCompany.name || !newCompany.city || isSubmitting}
+                      >
+                        {isSubmitting ? "Skickar..." : "Skicka förslag"}
+                      </Button>
+                    </DialogFooter>
+                  </>
+                )}
               </DialogContent>
             </Dialog>
           </div>
