@@ -362,10 +362,21 @@ export function ReportsView({ students, careerGroups }: Props) {
               </Card>
             )}
 
-            <Button onClick={exportStudentReport} className="flex items-center gap-2">
-              <Download className="h-4 w-4" />
-              Exportera som CSV
-            </Button>
+            <div className="flex gap-2">
+              <Button onClick={exportStudentReport} variant="outline" className="flex items-center gap-2">
+                <Download className="h-4 w-4" />
+                CSV
+              </Button>
+              <Button 
+                onClick={() => {
+                  window.open(`/api/reports/pdf?type=student&studentId=${selectedStudent}`, '_blank');
+                }}
+                className="flex items-center gap-2"
+              >
+                <FileText className="h-4 w-4" />
+                PDF
+              </Button>
+            </div>
           </>
         )}
       </TabsContent>
@@ -509,10 +520,21 @@ export function ReportsView({ students, careerGroups }: Props) {
                     </CardContent>
                   </Card>
 
-                  <Button onClick={exportGroupReport} className="flex items-center gap-2">
-                    <Download className="h-4 w-4" />
-                    Exportera som CSV
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button onClick={exportGroupReport} variant="outline" className="flex items-center gap-2">
+                      <Download className="h-4 w-4" />
+                      CSV
+                    </Button>
+                    <Button 
+                      onClick={() => {
+                        window.open(`/api/reports/pdf?type=group&groupId=${selectedGroup}`, '_blank');
+                      }}
+                      className="flex items-center gap-2"
+                    >
+                      <FileText className="h-4 w-4" />
+                      PDF
+                    </Button>
+                  </div>
                 </>
               );
             })()}
