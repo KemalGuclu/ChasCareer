@@ -28,6 +28,6 @@
 - [x] CRM-modul (leads, kontakter)
 - [x] Företagsdatabas med godkännandeflöde
 - [x] Student kan föreslå företag → Admin godkänner
-- [ ] LIA-platshantering
+- [x] LIA-platshantering
 - [ ] Rapportering
 - [ ] Slack-integration
