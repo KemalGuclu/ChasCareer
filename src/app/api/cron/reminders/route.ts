@@ -46,6 +46,7 @@ export async function GET(request: Request) {
     const notifications: { studentName: string; phase: string; daysLeft: number }[] = [];
 
     for (const schedule of upcomingDeadlines) {
+      if (!schedule.deadline) continue;
       const deadlineDate = new Date(schedule.deadline);
       const daysLeft = Math.ceil((deadlineDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
 
