@@ -12,21 +12,22 @@
 - [x] Sätta upp grundläggande layout
 - [x] Sätta upp databas (Supabase PostgreSQL)
 
-### Sprint 2-3: Dashboard
+### Sprint 2-3: Dashboard ✅
 - [x] Seed data för demo
 - [x] Admin dashboard med översikt
 - [x] Filtrering och sökning (studerandelista)
-- [/] Studerande dashboard (markera moment)
+- [x] Studerande dashboard (markera moment)
 - [ ] Responsiv design
 
-### Sprint 4-5: Processmodul
+### Sprint 4-5: Processmodul ✅
 - [x] Fas-visualisering (FAS 1-4)
 - [x] Markera avklarade moment
 - [ ] Automatiska påminnelser
 
 ## Fas 4: V1.0 Features
 - [x] CRM-modul (leads, kontakter)
-- [/] Företagsdatabas
+- [x] Företagsdatabas med godkännandeflöde
+- [x] Student kan föreslå företag → Admin godkänner
 - [ ] LIA-platshantering
 - [ ] Rapportering
 - [ ] Slack-integration
