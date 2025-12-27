@@ -28,18 +28,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signIn: "/login",
   },
   providers: [
-    // Google OAuth - för @chasacademy.se användare
+    // Google OAuth - alla Google-konton (lägg till hd: "chasacademy.se" för att begränsa)
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code",
-          hd: "chasacademy.se", // Begränsa till Chas Academy-domänen
-        },
-      },
     }),
     // Demo credentials provider - kan tas bort i produktion
     Credentials({
