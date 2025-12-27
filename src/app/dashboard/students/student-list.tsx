@@ -21,6 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Search, Filter, Users, X } from "lucide-react";
+import { SlackDMDialog } from "@/components/slack-dm-dialog";
 
 type Student = {
   id: string;
@@ -244,6 +245,7 @@ export function StudentList({ students, careerGroups }: Props) {
                 <TableHead>Fas</TableHead>
                 <TableHead>Leads</TableHead>
                 <TableHead>LIA-status</TableHead>
+                <TableHead className="text-right">Åtgärder</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -289,6 +291,12 @@ export function StudentList({ students, careerGroups }: Props) {
                       ) : (
                         <span className="text-muted-foreground">—</span>
                       )}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <SlackDMDialog
+                        studentName={student.name || student.email}
+                        studentEmail={student.email}
+                      />
                     </TableCell>
                   </TableRow>
                 ))
