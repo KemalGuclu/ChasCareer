@@ -10,7 +10,7 @@ export default function LogoutPage() {
   useEffect(() => {
     const doLogout = async () => {
       await logout();
-      router.push("/login");
+      router.push("/");
     };
     doLogout();
   }, [router]);
