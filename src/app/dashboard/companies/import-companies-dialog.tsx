@@ -12,6 +12,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Upload, FileText, CheckCircle2, AlertCircle } from "lucide-react";
+import { toast } from "sonner";
 
 type ImportResult = {
   success: boolean;
@@ -65,6 +66,7 @@ export function ImportCompaniesDialog({ onImportComplete }: Props) {
         });
         if (data.imported > 0) {
           onImportComplete();
+          toast.success(`${data.imported} företag importerade!`);
         }
       } else {
         setResult({
