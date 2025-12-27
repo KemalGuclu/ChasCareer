@@ -29,8 +29,8 @@ import {
   Settings,
   GraduationCap,
   Briefcase,
-  LogOut,
 } from "lucide-react";
+import { LogoutButton } from "./logout-button";
 
 const navigation = {
   // Gemensamt för alla
@@ -156,9 +156,7 @@ export function AppLayout({ children, user }: AppLayoutProps) {
                 <span className="text-xs text-muted-foreground">{user?.role || "Student"}</span>
               </div>
             </div>
-            <Link href="/api/auth/signout" className="p-2 hover:bg-muted rounded-md">
-              <LogOut className="h-4 w-4 text-muted-foreground" />
-            </Link>
+            <LogoutButton />
           </div>
         </SidebarFooter>
       </Sidebar>
