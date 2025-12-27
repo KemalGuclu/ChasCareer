@@ -20,7 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Search, Filter, Users, X } from "lucide-react";
+import { Search, Filter, Users, X, ArrowUpDown } from "lucide-react";
 import { SlackDMDialog } from "@/components/slack-dm-dialog";
 
 type Student = {
@@ -72,6 +72,8 @@ export function StudentList({ students, careerGroups }: Props) {
   const [selectedGroup, setSelectedGroup] = useState<string>("all");
   const [selectedPhase, setSelectedPhase] = useState<string>("all");
   const [selectedLiaStatus, setSelectedLiaStatus] = useState<string>("all");
+  const [sortBy, setSortBy] = useState<string>("name");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
   // Filtrera studerande baserat på valda filter
   const filteredStudents = useMemo(() => {
@@ -99,8 +101,30 @@ export function StudentList({ students, careerGroups }: Props) {
         student.liaPlacement?.status === selectedLiaStatus;
 
       return matchesSearch && matchesGroup && matchesPhase && matchesLia;
+    }).sort((a, b) => {
+      let comparison = 0;
+      switch (sortBy) {
+        case "name":
+          comparison = (a.name || "").localeCompare(b.name || "");
+          break;
+        case "email":
+          comparison = a.email.localeCompare(b.email);
+          break;
+        case "group":
+          comparison = (a.careerGroup?.name || "").localeCompare(b.careerGroup?.name || "");
+          break;
+        case "phase":
+          comparison = (a.progression?.currentPhase || "").localeCompare(b.progression?.currentPhase || "");
+          break;
+        case "leads":
+          comparison = a.leads.length - b.leads.length;
+          break;
+        default:
+          comparison = 0;
+      }
+      return sortOrder === "asc" ? comparison : -comparison;
     });
-  }, [students, search, selectedGroup, selectedPhase, selectedLiaStatus]);
+  }, [students, search, selectedGroup, selectedPhase, selectedLiaStatus, sortBy, sortOrder]);
 
   const hasActiveFilters =
     search !== "" ||
@@ -230,6 +254,30 @@ export function StudentList({ students, careerGroups }: Props) {
                 <SelectItem value="PENDING">LIA Väntar</SelectItem>
               </SelectContent>
             </Select>
+
+            {/* Sortering */}
+            <Select value={sortBy} onValueChange={setSortBy}>
+              <SelectTrigger className="w-[140px]">
+                <ArrowUpDown className="h-4 w-4 mr-2" />
+                <SelectValue placeholder="Sortera" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="name">Namn</SelectItem>
+                <SelectItem value="email">Email</SelectItem>
+                <SelectItem value="group">Grupp</SelectItem>
+                <SelectItem value="phase">Fas</SelectItem>
+                <SelectItem value="leads">Antal leads</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Button 
+              variant="outline" 
+              size="icon"
+              onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
+              title={sortOrder === "asc" ? "Stigande" : "Fallande"}
+            >
+              <ArrowUpDown className={`h-4 w-4 ${sortOrder === "desc" ? "rotate-180" : ""}`} />
+            </Button>
           </div>
         </CardContent>
       </Card>
