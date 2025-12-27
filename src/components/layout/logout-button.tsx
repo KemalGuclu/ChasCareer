@@ -1,12 +1,14 @@
 "use client";
 
-import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
 
 export function LogoutButton() {
+  const router = useRouter();
+
   return (
     <button
-      onClick={() => signOut({ callbackUrl: "/login" })}
+      onClick={() => router.push("/logout")}
       className="p-2 hover:bg-muted rounded-md"
       title="Logga ut"
     >
