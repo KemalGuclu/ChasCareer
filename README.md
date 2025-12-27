@@ -19,7 +19,14 @@ https://chas-career-sifd.vercel.app
 - 📈 **Rapporter** - Individ-, grupp- och klassrapporter med export
 - 💬 **Slack DM** - Skicka direktmeddelanden till studenter
 
-## 🛠 Tech Stack
+## � Dokumentation
+
+Detaljerade guider för varje användarroll:
+- [Administratörsguide](docs/ADMIN_GUIDE.md) - Användarhantering, företag, rapporter
+- [Utbildarguide](docs/TEACHER_GUIDE.md) - Grupper, progression, DM
+- [Studentguide](docs/STUDENT_GUIDE.md) - Progression, leads, LIA
+
+## �🛠 Tech Stack
 - **Framework:** Next.js 15 (App Router)
 - **Styling:** Tailwind CSS + shadcn/ui
 - **Database:** PostgreSQL (Supabase)
