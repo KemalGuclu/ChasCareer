@@ -41,7 +41,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Plus, Pencil, Trash2, Users, Search } from "lucide-react";
+import { Plus, Pencil, Trash2, Users, Search, ArrowUpDown } from "lucide-react";
 
 type CareerGroup = {
   id: string;
@@ -79,6 +79,8 @@ export function UsersList({ users: initialUsers, careerGroups }: Props) {
   const [users, setUsers] = useState(initialUsers);
   const [search, setSearch] = useState("");
   const [roleFilter, setRoleFilter] = useState<string>("all");
+  const [sortBy, setSortBy] = useState<string>("name");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [editingUser, setEditingUser] = useState<User | null>(null);
@@ -98,6 +100,25 @@ export function UsersList({ users: initialUsers, careerGroups }: Props) {
       user.email.toLowerCase().includes(search.toLowerCase());
     const matchesRole = roleFilter === "all" || user.role === roleFilter;
     return matchesSearch && matchesRole;
+  }).sort((a, b) => {
+    let comparison = 0;
+    switch (sortBy) {
+      case "name":
+        comparison = (a.name || "").localeCompare(b.name || "");
+        break;
+      case "email":
+        comparison = a.email.localeCompare(b.email);
+        break;
+      case "role":
+        comparison = a.role.localeCompare(b.role);
+        break;
+      case "group":
+        comparison = (a.careerGroup?.name || "").localeCompare(b.careerGroup?.name || "");
+        break;
+      default:
+        comparison = 0;
+    }
+    return sortOrder === "asc" ? comparison : -comparison;
   });
 
   const handleAddUser = async () => {
@@ -235,6 +256,29 @@ export function UsersList({ users: initialUsers, careerGroups }: Props) {
                   <SelectItem value="STUDENT">Studerande</SelectItem>
                 </SelectContent>
               </Select>
+
+              {/* Sortering */}
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-[140px]">
+                  <ArrowUpDown className="h-4 w-4 mr-2" />
+                  <SelectValue placeholder="Sortera" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="name">Namn</SelectItem>
+                  <SelectItem value="email">Email</SelectItem>
+                  <SelectItem value="role">Roll</SelectItem>
+                  <SelectItem value="group">Grupp</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <Button 
+                variant="outline" 
+                size="icon"
+                onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
+                title={sortOrder === "asc" ? "Stigande" : "Fallande"}
+              >
+                <ArrowUpDown className={`h-4 w-4 ${sortOrder === "desc" ? "rotate-180" : ""}`} />
+              </Button>
             </div>
 
             <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>

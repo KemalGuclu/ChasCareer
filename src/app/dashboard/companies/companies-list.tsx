@@ -41,6 +41,7 @@ import {
   Check,
   X,
   Clock,
+  ArrowUpDown,
 } from "lucide-react";
 import { ImportCompaniesDialog } from "./import-companies-dialog";
 
@@ -82,6 +83,8 @@ export function CompaniesList({ companies: initialCompanies, pendingCompanies: i
   const [search, setSearch] = useState("");
   const [cityFilter, setCityFilter] = useState<string>("all");
   const [industryFilter, setIndustryFilter] = useState<string>("all");
+  const [sortBy, setSortBy] = useState<string>("name");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   
@@ -120,8 +123,30 @@ export function CompaniesList({ companies: initialCompanies, pendingCompanies: i
       const matchesIndustry = industryFilter === "all" || company.industry === industryFilter;
 
       return matchesSearch && matchesCity && matchesIndustry;
+    }).sort((a, b) => {
+      let comparison = 0;
+      switch (sortBy) {
+        case "name":
+          comparison = a.name.localeCompare(b.name);
+          break;
+        case "city":
+          comparison = a.city.localeCompare(b.city);
+          break;
+        case "industry":
+          comparison = (a.industry || "").localeCompare(b.industry || "");
+          break;
+        case "contacts":
+          comparison = a.contacts.length - b.contacts.length;
+          break;
+        case "lia":
+          comparison = a.liaPlacements.length - b.liaPlacements.length;
+          break;
+        default:
+          comparison = 0;
+      }
+      return sortOrder === "asc" ? comparison : -comparison;
     });
-  }, [companies, search, cityFilter, industryFilter]);
+  }, [companies, search, cityFilter, industryFilter, sortBy, sortOrder]);
 
   const addCompany = async () => {
     if (!newCompany.name || !newCompany.city) return;
@@ -305,6 +330,31 @@ export function CompaniesList({ companies: initialCompanies, pendingCompanies: i
                 ))}
               </SelectContent>
             </Select>
+
+            {/* Sortering */}
+            <Select value={sortBy} onValueChange={setSortBy}>
+              <SelectTrigger className="w-[140px]">
+                <ArrowUpDown className="h-4 w-4 mr-2" />
+                <SelectValue placeholder="Sortera" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="name">Namn</SelectItem>
+                <SelectItem value="city">Stad</SelectItem>
+                <SelectItem value="industry">Bransch</SelectItem>
+                <SelectItem value="contacts">Kontakter</SelectItem>
+                <SelectItem value="lia">LIA-platser</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Button 
+              variant="outline" 
+              size="icon"
+              onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
+              title={sortOrder === "asc" ? "Stigande" : "Fallande"}
+            >
+              <ArrowUpDown className={`h-4 w-4 ${sortOrder === "desc" ? "rotate-180" : ""}`} />
+            </Button>
+
             <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
               <DialogTrigger asChild>
                 <Button>
