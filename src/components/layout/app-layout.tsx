@@ -77,9 +77,11 @@ export function AppLayout({ children, user }: AppLayoutProps) {
       <Sidebar>
         <SidebarHeader className="border-b px-6 py-4">
           <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold">
-              CC
-            </div>
+            <img 
+              src="/favicon.png" 
+              alt="ChasCareer" 
+              className="h-8 w-8 rounded-lg"
+            />
             <span className="text-lg font-semibold">ChasCareer</span>
           </Link>
         </SidebarHeader>
