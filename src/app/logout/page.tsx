@@ -1,7 +1,23 @@
-import { signOut } from "@/lib/auth";
-import { redirect } from "next/navigation";
+"use client";
 
-export default async function LogoutPage() {
-  await signOut({ redirect: false });
-  redirect("/login");
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { logout } from "./actions";
+
+export default function LogoutPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const doLogout = async () => {
+      await logout();
+      router.push("/login");
+    };
+    doLogout();
+  }, [router]);
+
+  return (
+    <div className="flex h-screen items-center justify-center">
+      <p className="text-muted-foreground">Loggar ut...</p>
+    </div>
+  );
 }
