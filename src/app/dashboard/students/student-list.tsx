@@ -20,8 +20,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Search, Filter, Users, X, ArrowUpDown } from "lucide-react";
+import { Search, Filter, Users, X, ArrowUpDown, UserX } from "lucide-react";
 import { SlackDMDialog } from "@/components/slack-dm-dialog";
+import { EmptyState } from "@/components/empty-state";
 
 type Student = {
   id: string;
@@ -299,8 +300,22 @@ export function StudentList({ students, careerGroups }: Props) {
             <TableBody>
               {filteredStudents.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="h-24 text-center">
-                    Inga studerande matchar filtret.
+                  <TableCell colSpan={5} className="p-0">
+                    <EmptyState
+                      icon={UserX}
+                      title="Inga studerande hittades"
+                      description={hasActiveFilters ? "Prova att ändra eller rensa filtren" : "Det finns inga studerande i systemet ännu"}
+                      action={
+                        hasActiveFilters ? (
+                          <button
+                            onClick={clearFilters}
+                            className="text-primary hover:underline text-sm"
+                          >
+                            Rensa filter
+                          </button>
+                        ) : undefined
+                      }
+                    />
                   </TableCell>
                 </TableRow>
               ) : (
