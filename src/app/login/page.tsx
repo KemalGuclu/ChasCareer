@@ -111,7 +111,7 @@ export default function LoginPage() {
                 fill="#EA4335"
               />
             </svg>
-            Logga in med Google (@chasacademy.se)
+            Logga in med Google
           </Button>
 
           <div className="relative">
