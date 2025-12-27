@@ -143,17 +143,22 @@ export function AppLayout({ children, user }: AppLayoutProps) {
         </SidebarContent>
 
         <SidebarFooter className="border-t p-4">
-          <div className="flex items-center gap-3">
-            <Avatar className="h-9 w-9">
-              <AvatarImage src={user?.image || ""} alt={user?.name || ""} />
-              <AvatarFallback>
-                {user?.name?.charAt(0).toUpperCase() || "U"}
-              </AvatarFallback>
-            </Avatar>
-            <div className="flex flex-col">
-              <span className="text-sm font-medium">{user?.name || "Användare"}</span>
-              <span className="text-xs text-muted-foreground">{user?.role || "Student"}</span>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Avatar className="h-9 w-9">
+                <AvatarImage src={user?.image || ""} alt={user?.name || ""} />
+                <AvatarFallback>
+                  {user?.name?.charAt(0).toUpperCase() || "U"}
+                </AvatarFallback>
+              </Avatar>
+              <div className="flex flex-col">
+                <span className="text-sm font-medium">{user?.name || "Användare"}</span>
+                <span className="text-xs text-muted-foreground">{user?.role || "Student"}</span>
+              </div>
             </div>
+            <Link href="/api/auth/signout" className="p-2 hover:bg-muted rounded-md">
+              <LogOut className="h-4 w-4 text-muted-foreground" />
+            </Link>
           </div>
         </SidebarFooter>
       </Sidebar>
