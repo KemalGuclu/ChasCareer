@@ -10,7 +10,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { milestoneId, completed } = await request.json();
+    const { milestoneId, completed, comment } = await request.json();
 
     if (!milestoneId || typeof completed !== "boolean") {
       return NextResponse.json(
@@ -44,12 +44,14 @@ export async function POST(request: Request) {
       update: {
         completed,
         completedAt: completed ? new Date() : null,
+        comment: comment ?? undefined,
       },
       create: {
         progressionId: progression.id,
         milestoneId: milestoneId,
         completed,
         completedAt: completed ? new Date() : null,
+        comment: comment ?? null,
       },
     });
 

@@ -42,7 +42,7 @@
 ## Kvarstående
 - [x] Klassrapport (aggregerad statistik)
 - [x] Slack DM till enskild studerande
-- [ ] Bekräftelsedialog vid markera moment
-- [ ] Kommentarfält på moment
-- [ ] Import-flöde för företag (CSV)
-- [ ] Dokumentation
+- [x] Bekräftelsedialog vid markera moment
+- [x] Kommentarfält på moment
+- [x] Import-flöde för företag (CSV)
+- [x] Dokumentation

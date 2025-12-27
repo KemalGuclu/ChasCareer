@@ -42,6 +42,7 @@ import {
   X,
   Clock,
 } from "lucide-react";
+import { ImportCompaniesDialog } from "./import-companies-dialog";
 
 type Contact = {
   id: string;
@@ -311,6 +312,7 @@ export function CompaniesList({ companies: initialCompanies, pendingCompanies: i
                   Lägg till företag
                 </Button>
               </DialogTrigger>
+            <ImportCompaniesDialog onImportComplete={() => router.refresh()} />
               <DialogContent className="max-w-md">
                 <DialogHeader>
                   <DialogTitle>Lägg till nytt företag</DialogTitle>

@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 import { 
   CheckCircle2, 
   Circle, 
@@ -13,6 +15,16 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 type PhaseSchedule = {
   phase: string;
@@ -74,6 +86,14 @@ export function ProgressionView({ user, allMilestones }: Props) {
     user?.progression?.currentPhase || "PHASE_1",
   ]);
   const [optimisticUpdates, setOptimisticUpdates] = useState<Record<string, boolean>>({});
+  const [confirmDialog, setConfirmDialog] = useState<{
+    open: boolean;
+    milestoneId: string;
+    milestoneName: string;
+    newState: boolean;
+    currentComment: string;
+  }>({ open: false, milestoneId: "", milestoneName: "", newState: false, currentComment: "" });
+  const [comment, setComment] = useState("");
 
   const currentPhase = user?.progression?.currentPhase || "PHASE_1";
   const completedMilestones = user?.progression?.milestones || [];
@@ -93,7 +113,7 @@ export function ProgressionView({ user, allMilestones }: Props) {
     return completedMilestones.some((m) => m.milestone.id === milestoneId && m.completed);
   };
 
-  const toggleMilestone = async (milestoneId: string, completed: boolean) => {
+  const toggleMilestone = async (milestoneId: string, completed: boolean, milestoneComment?: string) => {
     // Optimistic update
     setOptimisticUpdates((prev) => ({ ...prev, [milestoneId]: completed }));
 
@@ -101,7 +121,7 @@ export function ProgressionView({ user, allMilestones }: Props) {
       await fetch("/api/progression/milestone", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ milestoneId, completed }),
+        body: JSON.stringify({ milestoneId, completed, comment: milestoneComment }),
       });
     } catch (error) {
       console.error("Failed to update milestone:", error);
@@ -112,6 +132,26 @@ export function ProgressionView({ user, allMilestones }: Props) {
         return newState;
       });
     }
+  };
+
+  const handleCheckboxClick = (milestone: Milestone, isCurrentlyCompleted: boolean) => {
+    // Hämta befintlig kommentar om det finns
+    const existingProgress = completedMilestones.find(m => m.milestone.id === milestone.id);
+    const existingComment = (existingProgress as { comment?: string | null })?.comment || "";
+    setComment(existingComment);
+    setConfirmDialog({
+      open: true,
+      milestoneId: milestone.id,
+      milestoneName: milestone.name,
+      newState: !isCurrentlyCompleted,
+      currentComment: existingComment,
+    });
+  };
+
+  const handleConfirm = () => {
+    toggleMilestone(confirmDialog.milestoneId, confirmDialog.newState, comment);
+    setComment("");
+    setConfirmDialog({ open: false, milestoneId: "", milestoneName: "", newState: false, currentComment: "" });
   };
 
   const getPhaseSchedule = (phaseId: string) => {
@@ -257,9 +297,12 @@ export function ProgressionView({ user, allMilestones }: Props) {
                           <Checkbox
                             id={milestone.id}
                             checked={isCompleted}
-                            onCheckedChange={(checked) =>
-                              toggleMilestone(milestone.id, checked as boolean)
-                            }
+                            onClick={(e) => {
+                              e.preventDefault();
+                              if (!isFuture) {
+                                handleCheckboxClick(milestone, isCompleted);
+                              }
+                            }}
                             disabled={isFuture}
                           />
                           <label
@@ -285,6 +328,40 @@ export function ProgressionView({ user, allMilestones }: Props) {
           );
         })}
       </div>
+
+      {/* Bekräftelsedialog */}
+      <AlertDialog open={confirmDialog.open} onOpenChange={(open) => !open && setConfirmDialog({ ...confirmDialog, open: false })}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              {confirmDialog.newState ? "Markera som avklarat?" : "Ångra markering?"}
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              {confirmDialog.newState
+                ? `Vill du markera "${confirmDialog.milestoneName}" som avklarat?`
+                : `Vill du ångra markeringen för "${confirmDialog.milestoneName}"?`}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          {confirmDialog.newState && (
+            <div className="space-y-2 py-2">
+              <Label htmlFor="comment">Kommentar (valfritt)</Label>
+              <Textarea
+                id="comment"
+                placeholder="Lägg till en anteckning om detta moment..."
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                rows={3}
+              />
+            </div>
+          )}
+          <AlertDialogFooter>
+            <AlertDialogCancel>Avbryt</AlertDialogCancel>
+            <AlertDialogAction onClick={handleConfirm}>
+              {confirmDialog.newState ? "Markera avklarat" : "Ångra markering"}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
