@@ -50,9 +50,11 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-secondary/20 p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-primary text-primary-foreground text-2xl font-bold">
-            CC
-          </div>
+          <img 
+            src="/favicon.png" 
+            alt="ChasCareer" 
+            className="mx-auto mb-4 h-16 w-16 rounded-xl"
+          />
           <CardTitle className="text-2xl">ChasCareer</CardTitle>
           <CardDescription>
             Logga in för att fortsätta till din dashboard
