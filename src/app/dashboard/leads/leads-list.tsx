@@ -60,7 +60,12 @@ type Lead = {
   contactAttempts: number;
   lastContactAt: Date | null;
   notes: string | null;
-  company: Company;
+  company: {
+    id: string;
+    name: string;
+    industry: string | null;
+    city: string;
+  };
   contact: Contact | null;
 };
 
