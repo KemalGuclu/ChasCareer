@@ -31,3 +31,18 @@
 - [x] LIA-platshantering
 - [x] Rapportering
 - [x] Slack-integration
+
+## Fas 4.5: V1.0 Komplettering
+- [x] Google OAuth (bredvid demo-auth)
+- [x] Admin: Hantera användare (lägg till/redigera/ta bort)
+- [x] Redigera företag
+- [x] Redigera/ta bort kontakter
+- [x] Utbildare dashboard (Mina Grupper)
+
+## Kvarstående
+- [ ] Klassrapport (aggregerad statistik)
+- [ ] Slack DM till enskild studerande
+- [ ] Bekräftelsedialog vid markera moment
+- [ ] Kommentarfält på moment
+- [ ] Import-flöde för företag (CSV)
+- [ ] Dokumentation

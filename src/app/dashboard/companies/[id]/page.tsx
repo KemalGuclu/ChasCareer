@@ -15,6 +15,8 @@ import {
   Mail,
   Phone,
 } from "lucide-react";
+import { EditCompanyDialog } from "./edit-company-dialog";
+import { ContactsList } from "./contacts-list";
 
 export default async function CompanyDetailPage({
   params,
@@ -85,14 +87,17 @@ export default async function CompanyDetailPage({
             </div>
           </div>
         </div>
-        {company.website && (
-          <Button variant="outline" asChild>
-            <a href={company.website} target="_blank" rel="noopener noreferrer">
-              <Globe className="h-4 w-4 mr-2" />
-              Webbplats
-            </a>
-          </Button>
-        )}
+        <div className="flex gap-2">
+          <EditCompanyDialog company={company} />
+          {company.website && (
+            <Button variant="outline" asChild>
+              <a href={company.website} target="_blank" rel="noopener noreferrer">
+                <Globe className="h-4 w-4 mr-2" />
+                Webbplats
+              </a>
+            </Button>
+          )}
+        </div>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
@@ -106,40 +111,7 @@ export default async function CompanyDetailPage({
             <CardDescription>Kontaktpersoner på företaget</CardDescription>
           </CardHeader>
           <CardContent>
-            {company.contacts.length === 0 ? (
-              <p className="text-muted-foreground text-sm">Inga kontakter registrerade</p>
-            ) : (
-              <div className="space-y-3">
-                {company.contacts.map((contact) => (
-                  <div
-                    key={contact.id}
-                    className="p-3 rounded-lg border bg-muted/20"
-                  >
-                    <div className="font-medium">{contact.name}</div>
-                    {contact.title && (
-                      <div className="text-sm text-muted-foreground">{contact.title}</div>
-                    )}
-                    <div className="flex gap-4 mt-2 text-sm">
-                      {contact.email && (
-                        <a
-                          href={`mailto:${contact.email}`}
-                          className="flex items-center gap-1 text-primary hover:underline"
-                        >
-                          <Mail className="h-3 w-3" />
-                          {contact.email}
-                        </a>
-                      )}
-                      {contact.phone && (
-                        <span className="flex items-center gap-1">
-                          <Phone className="h-3 w-3" />
-                          {contact.phone}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+            <ContactsList contacts={company.contacts} />
           </CardContent>
         </Card>
 
