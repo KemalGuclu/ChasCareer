@@ -100,9 +100,29 @@ type GroupWithStudents = {
   }[];
 };
 
+type EducationMember = {
+  id: string;
+  name: string | null;
+  email: string;
+  progression: Progression | null;
+  leads: Lead[];
+  liaPlacement: { id: string; status: string } | null;
+};
+
+type Education = {
+  id: string;
+  name: string;
+  careerGroups: {
+    id: string;
+    name: string;
+    members: EducationMember[];
+  }[];
+};
+
 type Props = {
   students: Student[];
   careerGroups: GroupWithStudents[];
+  educations: Education[];
 };
 
 const phaseLabels: Record<string, string> = {
@@ -112,9 +132,10 @@ const phaseLabels: Record<string, string> = {
   PHASE_4: "Fas 4",
 };
 
-export function ReportsView({ students, careerGroups }: Props) {
+export function ReportsView({ students, careerGroups, educations }: Props) {
   const [selectedStudent, setSelectedStudent] = useState<string>("");
   const [selectedGroup, setSelectedGroup] = useState<string>("");
+  const [selectedEducation, setSelectedEducation] = useState<string>("");
 
   // Beräkna statistik för en student
   const getStudentStats = (student: {
@@ -246,6 +267,10 @@ export function ReportsView({ students, careerGroups }: Props) {
         <TabsTrigger value="group" className="flex items-center gap-2">
           <Users className="h-4 w-4" />
           Grupprapport
+        </TabsTrigger>
+        <TabsTrigger value="class" className="flex items-center gap-2">
+          <Building2 className="h-4 w-4" />
+          Klassrapport
         </TabsTrigger>
       </TabsList>
 
@@ -548,6 +573,236 @@ export function ReportsView({ students, careerGroups }: Props) {
             })()}
           </>
         )}
+      </TabsContent>
+
+      {/* Klassrapport */}
+      <TabsContent value="class" className="space-y-4">
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Building2 className="h-5 w-5" />
+              Välj utbildning
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Select value={selectedEducation} onValueChange={setSelectedEducation}>
+              <SelectTrigger className="w-full max-w-md">
+                <SelectValue placeholder="Välj utbildning..." />
+              </SelectTrigger>
+              <SelectContent>
+                {educations.map((edu) => (
+                  <SelectItem key={edu.id} value={edu.id}>
+                    {edu.name} ({edu.careerGroups.reduce((sum, g) => sum + g.members.length, 0)} studerande)
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </CardContent>
+        </Card>
+
+        {selectedEducation && (() => {
+          const education = educations.find((e) => e.id === selectedEducation);
+          if (!education) return null;
+
+          const allStudents = education.careerGroups.flatMap((g) => g.members);
+          const totalStudents = allStudents.length;
+          
+          const studentStats = allStudents.map((s) => {
+            const totalMilestones = s.progression?.milestones.length || 0;
+            const completedMilestones = s.progression?.milestones.filter((m) => m.completed).length || 0;
+            const progressPercent = totalMilestones > 0 ? (completedMilestones / totalMilestones) * 100 : 0;
+            return {
+              progressPercent,
+              currentPhase: s.progression?.currentPhase || "PHASE_1",
+              hasLia: !!s.liaPlacement,
+              totalLeads: s.leads.length,
+            };
+          });
+
+          const avgProgress = totalStudents > 0 
+            ? Math.round(studentStats.reduce((sum, s) => sum + s.progressPercent, 0) / totalStudents)
+            : 0;
+          
+          const phaseDistribution = {
+            PHASE_1: studentStats.filter((s) => s.currentPhase === "PHASE_1").length,
+            PHASE_2: studentStats.filter((s) => s.currentPhase === "PHASE_2").length,
+            PHASE_3: studentStats.filter((s) => s.currentPhase === "PHASE_3").length,
+            PHASE_4: studentStats.filter((s) => s.currentPhase === "PHASE_4").length,
+          };
+          
+          const studentsWithLia = studentStats.filter((s) => s.hasLia).length;
+          const totalLeads = studentStats.reduce((sum, s) => sum + s.totalLeads, 0);
+          const liaPercent = totalStudents > 0 ? Math.round((studentsWithLia / totalStudents) * 100) : 0;
+
+          const exportClassReport = () => {
+            const header = ["Grupp", "Studerande", "Snitt Progression", "Med LIA", "Totalt Leads"];
+            const rows = education.careerGroups.map((group) => {
+              const members = group.members;
+              const groupStats = members.map((s) => {
+                const total = s.progression?.milestones.length || 0;
+                const completed = s.progression?.milestones.filter((m) => m.completed).length || 0;
+                return {
+                  progress: total > 0 ? (completed / total) * 100 : 0,
+                  hasLia: !!s.liaPlacement,
+                  leads: s.leads.length,
+                };
+              });
+              const avgProg = members.length > 0 
+                ? Math.round(groupStats.reduce((s, st) => s + st.progress, 0) / members.length) 
+                : 0;
+              return [
+                group.name,
+                members.length.toString(),
+                `${avgProg}%`,
+                groupStats.filter((s) => s.hasLia).length.toString(),
+                groupStats.reduce((s, st) => s + st.leads, 0).toString(),
+              ];
+            });
+            
+            const data = [
+              [`Klassrapport: ${education.name}`, new Date().toLocaleDateString("sv-SE")],
+              [""],
+              ["Totalt studerande", totalStudents.toString()],
+              ["Genomsnittlig progression", `${avgProgress}%`],
+              ["Med LIA-plats", `${studentsWithLia} (${liaPercent}%)`],
+              ["Totalt leads", totalLeads.toString()],
+              [""],
+              ["Fas-fördelning"],
+              ["Fas 1", phaseDistribution.PHASE_1.toString()],
+              ["Fas 2", phaseDistribution.PHASE_2.toString()],
+              ["Fas 3", phaseDistribution.PHASE_3.toString()],
+              ["Fas 4", phaseDistribution.PHASE_4.toString()],
+              [""],
+              header,
+              ...rows,
+            ];
+            
+            const csvContent = data.map((row) => row.join(",")).join("\n");
+            const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = `klassrapport_${education.name.replace(/\s/g, "_")}_${new Date().toISOString().split("T")[0]}.csv`;
+            link.click();
+          };
+
+          return (
+            <>
+              {/* Sammanfattning */}
+              <div className="grid gap-4 md:grid-cols-4">
+                <Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-medium">Studerande</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{totalStudents}</div>
+                    <p className="text-xs text-muted-foreground">{education.careerGroups.length} grupper</p>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-medium">Snitt Progression</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{avgProgress}%</div>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-medium">Med LIA-plats</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{studentsWithLia}</div>
+                    <p className="text-xs text-muted-foreground">{liaPercent}%</p>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-medium">Totalt Leads</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{totalLeads}</div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Fas-fördelning */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <TrendingUp className="h-5 w-5" />
+                    Fas-fördelning
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-4 gap-4">
+                    {Object.entries(phaseDistribution).map(([phase, count]) => (
+                      <div key={phase} className="text-center p-4 bg-muted rounded-lg">
+                        <div className="text-2xl font-bold">{count}</div>
+                        <div className="text-sm text-muted-foreground">{phaseLabels[phase]}</div>
+                        <div className="text-xs text-muted-foreground">
+                          {totalStudents > 0 ? Math.round((count / totalStudents) * 100) : 0}%
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Grupper */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Grupper</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Grupp</TableHead>
+                        <TableHead className="text-right">Studerande</TableHead>
+                        <TableHead className="text-right">Snitt Progression</TableHead>
+                        <TableHead className="text-right">Med LIA</TableHead>
+                        <TableHead className="text-right">Leads</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {education.careerGroups.map((group) => {
+                        const members = group.members;
+                        const groupStats = members.map((s) => {
+                          const total = s.progression?.milestones.length || 0;
+                          const completed = s.progression?.milestones.filter((m) => m.completed).length || 0;
+                          return {
+                            progress: total > 0 ? (completed / total) * 100 : 0,
+                            hasLia: !!s.liaPlacement,
+                            leads: s.leads.length,
+                          };
+                        });
+                        const avgProg = members.length > 0 
+                          ? Math.round(groupStats.reduce((s, st) => s + st.progress, 0) / members.length) 
+                          : 0;
+                        return (
+                          <TableRow key={group.id}>
+                            <TableCell className="font-medium">{group.name}</TableCell>
+                            <TableCell className="text-right">{members.length}</TableCell>
+                            <TableCell className="text-right">{avgProg}%</TableCell>
+                            <TableCell className="text-right">{groupStats.filter((s) => s.hasLia).length}</TableCell>
+                            <TableCell className="text-right">{groupStats.reduce((s, st) => s + st.leads, 0)}</TableCell>
+                          </TableRow>
+                        );
+                      })}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+
+              <div className="flex gap-2">
+                <Button onClick={exportClassReport} variant="outline" className="flex items-center gap-2">
+                  <Download className="h-4 w-4" />
+                  Exportera CSV
+                </Button>
+              </div>
+            </>
+          );
+        })()}
       </TabsContent>
     </Tabs>
   );

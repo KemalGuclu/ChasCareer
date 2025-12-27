@@ -40,8 +40,8 @@
 - [x] Utbildare dashboard (Mina Grupper)
 
 ## Kvarstående
-- [ ] Klassrapport (aggregerad statistik)
-- [ ] Slack DM till enskild studerande
+- [x] Klassrapport (aggregerad statistik)
+- [x] Slack DM till enskild studerande
 - [ ] Bekräftelsedialog vid markera moment
 - [ ] Kommentarfält på moment
 - [ ] Import-flöde för företag (CSV)
