@@ -89,7 +89,7 @@ export function UsersList({ users: initialUsers, careerGroups }: Props) {
     email: "",
     name: "",
     role: "STUDENT",
-    careerGroupId: "",
+    careerGroupId: "none",
   });
 
   const filteredUsers = users.filter((user) => {
@@ -112,7 +112,7 @@ export function UsersList({ users: initialUsers, careerGroups }: Props) {
       const newUser = await res.json();
       setUsers([...users, newUser]);
       setIsAddDialogOpen(false);
-      setFormData({ email: "", name: "", role: "STUDENT", careerGroupId: "" });
+      setFormData({ email: "", name: "", role: "STUDENT", careerGroupId: "none" });
       router.refresh();
     }
     setLoading(false);
@@ -128,7 +128,7 @@ export function UsersList({ users: initialUsers, careerGroups }: Props) {
       body: JSON.stringify({
         name: formData.name,
         role: formData.role,
-        careerGroupId: formData.careerGroupId,
+        careerGroupId: formData.careerGroupId === "none" ? "" : formData.careerGroupId,
       }),
     });
 
@@ -159,7 +159,7 @@ export function UsersList({ users: initialUsers, careerGroups }: Props) {
       email: user.email,
       name: user.name || "",
       role: user.role,
-      careerGroupId: user.careerGroup?.id || "",
+      careerGroupId: user.careerGroup?.id || "none",
     });
     setIsEditDialogOpen(true);
   };
@@ -303,7 +303,7 @@ export function UsersList({ users: initialUsers, careerGroups }: Props) {
                           <SelectValue placeholder="Välj grupp (valfritt)" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="">Ingen grupp</SelectItem>
+                          <SelectItem value="none">Ingen grupp</SelectItem>
                           {careerGroups.map((group) => (
                             <SelectItem key={group.id} value={group.id}>
                               {group.name} ({group.education.name})
@@ -464,7 +464,7 @@ export function UsersList({ users: initialUsers, careerGroups }: Props) {
                     <SelectValue placeholder="Välj grupp (valfritt)" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Ingen grupp</SelectItem>
+                    <SelectItem value="none">Ingen grupp</SelectItem>
                     {careerGroups.map((group) => (
                       <SelectItem key={group.id} value={group.id}>
                         {group.name} ({group.education.name})
