@@ -93,7 +93,14 @@ type GroupWithStudents = {
   id: string;
   name: string;
   education: { name: string };
-  members: Student[];
+  members: {
+    id: string;
+    name: string | null;
+    email: string;
+    progression: Progression | null;
+    leads: Lead[];
+    liaPlacement: LiaPlacement | null;
+  }[];
 };
 
 type Props = {
@@ -113,7 +120,11 @@ export function ReportsView({ students, careerGroups }: Props) {
   const [selectedGroup, setSelectedGroup] = useState<string>("");
 
   // Beräkna statistik för en student
-  const getStudentStats = (student: Student) => {
+  const getStudentStats = (student: {
+    progression: Progression | null;
+    leads: Lead[];
+    liaPlacement: LiaPlacement | null;
+  }) => {
     const totalMilestones = student.progression?.milestones.length || 0;
     const completedMilestones = student.progression?.milestones.filter((m) => m.completed).length || 0;
     const progressPercent = totalMilestones > 0 ? Math.round((completedMilestones / totalMilestones) * 100) : 0;
