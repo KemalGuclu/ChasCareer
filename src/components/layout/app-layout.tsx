@@ -31,6 +31,7 @@ import {
   Briefcase,
 } from "lucide-react";
 import { LogoutButton } from "./logout-button";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const navigation = {
   // Gemensamt för alla
@@ -194,6 +195,7 @@ export function AppLayout({ children, user }: AppLayoutProps) {
           <SidebarTrigger />
           <Separator orientation="vertical" className="h-6" />
           <div className="flex-1" />
+          <ThemeToggle />
         </header>
         <main className="flex-1 p-6">
           {children}
