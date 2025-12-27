@@ -58,9 +58,6 @@ type Progression = {
 type Lead = {
   id: string;
   status: string;
-  company: {
-    name: string;
-  };
 };
 
 type LiaPlacement = {
@@ -361,7 +358,7 @@ export function ReportsView({ students, careerGroups }: Props) {
                     <TableBody>
                       {selectedStudentData.leads.map((lead) => (
                         <TableRow key={lead.id}>
-                          <TableCell className="font-medium">{lead.company.name}</TableCell>
+                          <TableCell className="font-medium">Lead #{lead.id.slice(-6)}</TableCell>
                           <TableCell>
                             <Badge variant="outline">{lead.status}</Badge>
                           </TableCell>
