@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import Credentials from "next-auth/providers/credentials";
+import Google from "next-auth/providers/google";
 import { prisma } from "@/lib/prisma";
 import type { Role } from "@prisma/client";
 
@@ -27,7 +28,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signIn: "/login",
   },
   providers: [
-    // Demo credentials provider - i produktion använd OAuth (Google, etc)
+    // Google OAuth - för @chasacademy.se användare
+    Google({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+          hd: "chasacademy.se", // Begränsa till Chas Academy-domänen
+        },
+      },
+    }),
+    // Demo credentials provider - kan tas bort i produktion
     Credentials({
       name: "credentials",
       credentials: {
@@ -73,10 +87,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
       if (user) {
         token.id = user.id;
         token.role = user.role;
+      }
+      // För Google OAuth: hämta roll från databasen om den inte finns
+      if (account?.provider === "google" && !token.role) {
+        const dbUser = await prisma.user.findUnique({
+          where: { email: token.email as string },
+        });
+        if (dbUser) {
+          token.id = dbUser.id;
+          token.role = dbUser.role;
+        } else {
+          // Nya Google-användare får STUDENT som default
+          token.role = "STUDENT";
+        }
       }
       return token;
     },

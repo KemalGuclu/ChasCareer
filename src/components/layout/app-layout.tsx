@@ -43,12 +43,17 @@ const navigation = {
     { name: "Mina Leads", href: "/dashboard/leads", icon: Users },
     { name: "Min LIA", href: "/dashboard/lia", icon: Briefcase },
   ],
+  // Endast för utbildare
+  teacher: [
+    { name: "Mina Grupper", href: "/dashboard/teacher", icon: GraduationCap },
+  ],
   // Endast för admin/lärare
   admin: [
     { name: "Studerande", href: "/dashboard/students", icon: GraduationCap },
     { name: "Företag", href: "/dashboard/companies", icon: Building2 },
     { name: "LIA-platser", href: "/dashboard/lia-management", icon: Briefcase },
     { name: "Rapporter", href: "/dashboard/reports", icon: FileText },
+    { name: "Användare", href: "/dashboard/users", icon: Users },
     { name: "Inställningar", href: "/dashboard/settings", icon: Settings },
   ],
 };
@@ -106,6 +111,27 @@ export function AppLayout({ children, user }: AppLayoutProps) {
               <SidebarGroupContent>
                 <SidebarMenu>
                   {navigation.student.map((item) => (
+                    <SidebarMenuItem key={item.name}>
+                      <SidebarMenuButton asChild isActive={pathname === item.href}>
+                        <Link href={item.href}>
+                          <item.icon className="h-4 w-4" />
+                          <span>{item.name}</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          )}
+
+          {/* Utbildare-specifikt */}
+          {user?.role === "TEACHER" && (
+            <SidebarGroup>
+              <SidebarGroupLabel>Utbildare</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {navigation.teacher.map((item) => (
                     <SidebarMenuItem key={item.name}>
                       <SidebarMenuButton asChild isActive={pathname === item.href}>
                         <Link href={item.href}>
