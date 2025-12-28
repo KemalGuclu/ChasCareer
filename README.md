@@ -3,7 +3,7 @@
 **Karriärplattform för Chas Academy-studenter** - Hjälper studerande att navigera sin LIA- och karriärresa.
 
 ## 🚀 Live Demo
-https://chas-career-sifd.vercel.app
+https://chas-career-si1d.vercel.app
 
 ## ✨ Features
 
@@ -18,13 +18,8 @@ https://chas-career-sifd.vercel.app
 - 🏢 **Företagshantering** - Godkänn föreslagna företag, CSV-import
 - 📈 **Rapporter** - Individ-, grupp- och klassrapporter med export
 - 💬 **Slack DM** - Skicka direktmeddelanden till studenter
+- 🌙 **Dark/Light mode** - Växla mellan ljust och mörkt tema
 
-## � Dokumentation
-
-Detaljerade guider för varje användarroll:
-- [Administratörsguide](docs/ADMIN_GUIDE.md) - Användarhantering, företag, rapporter
-- [Utbildarguide](docs/TEACHER_GUIDE.md) - Grupper, progression, DM
-- [Studentguide](docs/STUDENT_GUIDE.md) - Progression, leads, LIA
 
 ## �🛠 Tech Stack
 - **Framework:** Next.js 15 (App Router)
