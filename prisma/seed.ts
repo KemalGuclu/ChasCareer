@@ -140,11 +140,11 @@ async function main() {
 
   // Skapa progression för studerande
   const studentProgressions = [
-    { userId: "user-student", currentPhase: PhaseNumber.PHASE_2 },
-    { userId: "user-erik", currentPhase: PhaseNumber.PHASE_2 },
-    { userId: "user-lisa", currentPhase: PhaseNumber.PHASE_3 },
-    { userId: "user-johan", currentPhase: PhaseNumber.PHASE_1 },
-    { userId: "user-maria", currentPhase: PhaseNumber.PHASE_3 },
+    { id: "prog-student", userId: "user-student", currentPhase: PhaseNumber.PHASE_2 },
+    { id: "prog-erik", userId: "user-erik", currentPhase: PhaseNumber.PHASE_2 },
+    { id: "prog-lisa", userId: "user-lisa", currentPhase: PhaseNumber.PHASE_3 },
+    { id: "prog-johan", userId: "user-johan", currentPhase: PhaseNumber.PHASE_1 },
+    { id: "prog-maria", userId: "user-maria", currentPhase: PhaseNumber.PHASE_3 },
   ];
 
   for (const prog of studentProgressions) {
@@ -153,6 +153,39 @@ async function main() {
       update: { currentPhase: prog.currentPhase },
       create: prog,
     });
+  }
+
+  // Skapa MilestoneProgress för varje student
+  console.log("📊 Creating milestone progress...");
+  const allMilestones = await prisma.milestone.findMany();
+  const allProgressions = await prisma.progression.findMany();
+
+  for (const progression of allProgressions) {
+    for (const milestone of allMilestones) {
+      // Markera som completed baserat på fas
+      const phaseOrder = { PHASE_1: 1, PHASE_2: 2, PHASE_3: 3, PHASE_4: 4 };
+      const currentPhaseNum = phaseOrder[progression.currentPhase];
+      const milestonePhaseNum = phaseOrder[milestone.phase];
+      
+      // Completed om milestone-fasen är lägre än nuvarande fas
+      const completed = milestonePhaseNum < currentPhaseNum;
+
+      await prisma.milestoneProgress.upsert({
+        where: {
+          progressionId_milestoneId: {
+            progressionId: progression.id,
+            milestoneId: milestone.id,
+          },
+        },
+        update: { completed },
+        create: {
+          progressionId: progression.id,
+          milestoneId: milestone.id,
+          completed,
+          completedAt: completed ? new Date() : null,
+        },
+      });
+    }
   }
 
   // Skapa företag
