@@ -43,12 +43,17 @@ const navigation = {
     { name: "Min Progression", href: "/dashboard/progression", icon: Target },
     { name: "Mina Leads", href: "/dashboard/leads", icon: Users },
     { name: "Min LIA", href: "/dashboard/lia", icon: Briefcase },
+    { name: "Företag", href: "/dashboard/companies", icon: Building2 },
   ],
-  // Endast för utbildare
+  // För utbildare (Teacher)
   teacher: [
     { name: "Mina Grupper", href: "/dashboard/teacher", icon: GraduationCap },
+    { name: "Studerande", href: "/dashboard/students", icon: Users },
+    { name: "Företag", href: "/dashboard/companies", icon: Building2 },
+    { name: "LIA-platser", href: "/dashboard/lia-management", icon: Briefcase },
+    { name: "Rapporter", href: "/dashboard/reports", icon: FileText },
   ],
-  // Endast för admin/lärare
+  // Endast för Admin (full åtkomst)
   admin: [
     { name: "Studerande", href: "/dashboard/students", icon: GraduationCap },
     { name: "Företag", href: "/dashboard/companies", icon: Building2 },
@@ -71,7 +76,7 @@ interface AppLayoutProps {
 
 export function AppLayout({ children, user }: AppLayoutProps) {
   const pathname = usePathname();
-  const isAdmin = user?.role === "ADMIN" || user?.role === "TEACHER";
+  const isStudent = user?.role === "STUDENT" || !user?.role;
 
   return (
     <SidebarProvider>
@@ -108,7 +113,7 @@ export function AppLayout({ children, user }: AppLayoutProps) {
           </SidebarGroup>
 
           {/* Student-specifikt */}
-          {!isAdmin && (
+          {isStudent && (
             <SidebarGroup>
               <SidebarGroupLabel>Min Career</SidebarGroupLabel>
               <SidebarGroupContent>
@@ -149,8 +154,8 @@ export function AppLayout({ children, user }: AppLayoutProps) {
             </SidebarGroup>
           )}
 
-          {/* Admin/Lärare */}
-          {isAdmin && (
+          {/* Admin endast */}
+          {user?.role === "ADMIN" && (
             <SidebarGroup>
               <SidebarGroupLabel>Administration</SidebarGroupLabel>
               <SidebarGroupContent>
