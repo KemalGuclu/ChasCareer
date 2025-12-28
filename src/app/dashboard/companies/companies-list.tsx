@@ -44,6 +44,7 @@ import {
   ArrowUpDown,
 } from "lucide-react";
 import { ImportCompaniesDialog } from "./import-companies-dialog";
+import { EmptyState } from "@/components/empty-state";
 
 type Contact = {
   id: string;
@@ -498,10 +499,12 @@ export function CompaniesList({ companies: initialCompanies, pendingCompanies: i
             <TableBody>
               {filteredCompanies.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={7} className="h-24 text-center">
-                    {companies.length === 0
-                      ? "Inga företag ännu. Lägg till det första!"
-                      : "Inga företag matchar filtret."}
+                  <TableCell colSpan={7} className="p-0">
+                    <EmptyState
+                      icon={Building2}
+                      title={companies.length === 0 ? "Inga företag ännu" : "Inga företag matchar filtret"}
+                      description={companies.length === 0 ? "Lägg till det första företaget eller importera via CSV" : "Prova att ändra dina filter"}
+                    />
                   </TableCell>
                 </TableRow>
               ) : (

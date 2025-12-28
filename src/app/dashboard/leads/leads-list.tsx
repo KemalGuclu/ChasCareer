@@ -36,7 +36,9 @@ import {
   Phone,
   Mail,
   ArrowUpRight,
+  Target,
 } from "lucide-react";
+import { EmptyState } from "@/components/empty-state";
 
 type Contact = {
   id: string;
@@ -486,10 +488,12 @@ export function LeadsList({ leads: initialLeads, companies, userId }: Props) {
             <TableBody>
               {filteredLeads.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="h-24 text-center">
-                    {leads.length === 0
-                      ? "Inga leads ännu. Lägg till ditt första lead!"
-                      : "Inga leads matchar filtret."}
+                  <TableCell colSpan={5} className="p-0">
+                    <EmptyState
+                      icon={Target}
+                      title={leads.length === 0 ? "Inga leads ännu" : "Inga leads matchar filtret"}
+                      description={leads.length === 0 ? "Lägg till ditt första lead för att börja spåra kontakter" : "Prova att ändra dina filter"}
+                    />
                   </TableCell>
                 </TableRow>
               ) : (
