@@ -32,6 +32,7 @@ import {
 } from "lucide-react";
 import { LogoutButton } from "./logout-button";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { GlobalSearch } from "@/components/global-search";
 
 const navigation = {
   // Gemensamt för alla
@@ -199,7 +200,7 @@ export function AppLayout({ children, user }: AppLayoutProps) {
         <header className="flex h-14 items-center gap-4 border-b bg-background px-6">
           <SidebarTrigger />
           <Separator orientation="vertical" className="h-6" />
-          <div className="flex-1" />
+          <GlobalSearch />
           <ThemeToggle />
         </header>
         <main className="flex-1 p-6">
