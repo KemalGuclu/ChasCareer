@@ -200,9 +200,9 @@ export function StudentList({ students, careerGroups }: Props) {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
+          <div className="flex flex-wrap items-center gap-3">
             {/* Sök */}
-            <div className="relative">
+            <div className="relative flex-1 min-w-[180px] max-w-[250px]">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 placeholder="Sök namn eller email..."
@@ -214,7 +214,7 @@ export function StudentList({ students, careerGroups }: Props) {
 
             {/* Grupp */}
             <Select value={selectedGroup} onValueChange={setSelectedGroup}>
-              <SelectTrigger>
+              <SelectTrigger className="w-[150px]">
                 <SelectValue placeholder="Alla grupper" />
               </SelectTrigger>
               <SelectContent>
@@ -229,7 +229,7 @@ export function StudentList({ students, careerGroups }: Props) {
 
             {/* Fas */}
             <Select value={selectedPhase} onValueChange={setSelectedPhase}>
-              <SelectTrigger>
+              <SelectTrigger className="w-[150px]">
                 <SelectValue placeholder="Alla faser" />
               </SelectTrigger>
               <SelectContent>
@@ -243,8 +243,8 @@ export function StudentList({ students, careerGroups }: Props) {
 
             {/* LIA-status */}
             <Select value={selectedLiaStatus} onValueChange={setSelectedLiaStatus}>
-              <SelectTrigger>
-                <SelectValue placeholder="Alla LIA-status" />
+              <SelectTrigger className="w-[150px]">
+                <SelectValue placeholder="LIA-status" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">Alla LIA-status</SelectItem>
@@ -258,7 +258,7 @@ export function StudentList({ students, careerGroups }: Props) {
 
             {/* Sortering */}
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-[140px]">
+              <SelectTrigger className="w-[130px]">
                 <ArrowUpDown className="h-4 w-4 mr-2" />
                 <SelectValue placeholder="Sortera" />
               </SelectTrigger>
