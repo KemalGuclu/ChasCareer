@@ -33,6 +33,7 @@ import {
 import { LogoutButton } from "./logout-button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { GlobalSearch } from "@/components/global-search";
+import { NotificationBell } from "@/components/notification-bell";
 
 const navigation = {
   // Gemensamt för alla
@@ -201,6 +202,7 @@ export function AppLayout({ children, user }: AppLayoutProps) {
           <SidebarTrigger />
           <Separator orientation="vertical" className="h-6" />
           <GlobalSearch />
+          <NotificationBell />
           <ThemeToggle />
         </header>
         <main className="flex-1 p-6">
