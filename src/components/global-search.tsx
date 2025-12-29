@@ -105,7 +105,7 @@ export function GlobalSearch() {
       </Button>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-lg p-0">
+        <DialogContent className="max-w-lg p-0 [&>button]:hidden">
           <DialogHeader className="p-4 pb-0">
             <DialogTitle className="sr-only">Sök</DialogTitle>
             <div className="relative">
