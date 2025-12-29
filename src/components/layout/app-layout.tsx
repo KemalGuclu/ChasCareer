@@ -30,6 +30,7 @@ import {
   GraduationCap,
   Briefcase,
 } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { LogoutButton } from "./logout-button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { GlobalSearch } from "@/components/global-search";
@@ -39,6 +40,7 @@ const navigation = {
   // Gemensamt för alla
   common: [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+    { name: "Kalender", href: "/dashboard/calendar", icon: Calendar },
   ],
   // Endast för studenter
   student: [
