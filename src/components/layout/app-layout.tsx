@@ -31,6 +31,7 @@ import {
   Briefcase,
 } from "lucide-react";
 import { Calendar } from "lucide-react";
+import { User } from "lucide-react";
 import { LogoutButton } from "./logout-button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { GlobalSearch } from "@/components/global-search";
@@ -44,6 +45,7 @@ const navigation = {
   ],
   // Endast för studenter
   student: [
+    { name: "Min Profil", href: "/dashboard/profile", icon: User },
     { name: "Min Progression", href: "/dashboard/progression", icon: Target },
     { name: "Mina Leads", href: "/dashboard/leads", icon: Users },
     { name: "Min LIA", href: "/dashboard/lia", icon: Briefcase },
