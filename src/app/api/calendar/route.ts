@@ -56,15 +56,18 @@ export async function GET() {
     // Lägg till fas-events
     for (const schedule of phaseSchedules) {
       const phaseNames: Record<string, string> = {
-        PHASE_1: "FAS 1: Intro",
-        PHASE_2: "FAS 2: Nätverkande",
-        PHASE_3: "FAS 3: LIA-sök",
-        PHASE_4: "FAS 4: Jobb-sök",
+        PHASE_1: "FAS 1",
+        PHASE_2: "FAS 2",
+        PHASE_3: "FAS 3",
+        PHASE_4: "FAS 4",
       };
+
+      // För admin: lägg till gruppnamn i titeln
+      const groupSuffix = isAdmin ? ` (${schedule.careerGroup.name.split(" ")[0]})` : "";
 
       events.push({
         id: `phase-start-${schedule.id}`,
-        title: `${phaseNames[schedule.phase]} börjar`,
+        title: `${phaseNames[schedule.phase]} börjar${groupSuffix}`,
         date: schedule.startDate,
         type: "phase-start",
         group: isAdmin ? schedule.careerGroup.name : undefined,
@@ -72,7 +75,7 @@ export async function GET() {
 
       events.push({
         id: `phase-end-${schedule.id}`,
-        title: `${phaseNames[schedule.phase]} slutar`,
+        title: `${phaseNames[schedule.phase]} slutar${groupSuffix}`,
         date: schedule.endDate,
         type: "phase-end",
         group: isAdmin ? schedule.careerGroup.name : undefined,
@@ -81,7 +84,7 @@ export async function GET() {
       if (schedule.deadline) {
         events.push({
           id: `deadline-${schedule.id}`,
-          title: `Deadline: ${phaseNames[schedule.phase]}`,
+          title: `Deadline: ${phaseNames[schedule.phase]}${groupSuffix}`,
           date: schedule.deadline,
           type: "deadline",
           group: isAdmin ? schedule.careerGroup.name : undefined,
