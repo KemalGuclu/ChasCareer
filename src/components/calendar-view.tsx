@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, Calendar as CalendarIcon } from "lucide-reac
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 type CalendarEvent = {
   id: string;
@@ -14,17 +15,21 @@ type CalendarEvent = {
   group?: string;
 };
 
+type ViewMode = "week" | "month";
+
 const MONTHS = [
   "Januari", "Februari", "Mars", "April", "Maj", "Juni",
   "Juli", "Augusti", "September", "Oktober", "November", "December"
 ];
 
 const WEEKDAYS = ["Mån", "Tis", "Ons", "Tors", "Fre", "Lör", "Sön"];
+const WEEKDAYS_FULL = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"];
 
 export function CalendarView() {
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [loading, setLoading] = useState(true);
+  const [viewMode, setViewMode] = useState<ViewMode>("month");
 
   useEffect(() => {
     fetchEvents();
@@ -46,26 +51,49 @@ export function CalendarView() {
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
 
+  // Veckoberäkning
+  const getWeekDays = useMemo(() => {
+    const startOfWeek = new Date(currentDate);
+    const day = startOfWeek.getDay();
+    const diff = day === 0 ? -6 : 1 - day; // Monday = 0
+    startOfWeek.setDate(startOfWeek.getDate() + diff);
+
+    const days: Date[] = [];
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(startOfWeek);
+      date.setDate(startOfWeek.getDate() + i);
+      days.push(date);
+    }
+    return days;
+  }, [currentDate]);
+
+  // Veckonummer
+  const getWeekNumber = (date: Date) => {
+    const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+    const dayNum = d.getUTCDay() || 7;
+    d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+    const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    return Math.ceil((((d.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
+  };
+
+  // Månadsdagar
   const daysInMonth = useMemo(() => {
     const firstDay = new Date(currentYear, currentMonth, 1);
     const lastDay = new Date(currentYear, currentMonth + 1, 0);
-    const startPadding = (firstDay.getDay() + 6) % 7; // Monday = 0
+    const startPadding = (firstDay.getDay() + 6) % 7;
     
     type DayItem = { date: Date; isCurrentMonth: boolean };
     const days: DayItem[] = [];
     
-    // Föregående månads dagar
     for (let i = startPadding - 1; i >= 0; i--) {
       const date = new Date(currentYear, currentMonth, -i);
       days.push({ date, isCurrentMonth: false });
     }
     
-    // Aktuell månad
     for (let i = 1; i <= lastDay.getDate(); i++) {
       days.push({ date: new Date(currentYear, currentMonth, i), isCurrentMonth: true });
     }
     
-    // Nästa månads dagar för att fylla ut
     const remaining = 42 - days.length;
     for (let i = 1; i <= remaining; i++) {
       days.push({ date: new Date(currentYear, currentMonth + 1, i), isCurrentMonth: false });
@@ -83,25 +111,28 @@ export function CalendarView() {
 
   const getEventColor = (type: string) => {
     switch (type) {
-      case "phase-start":
-        return "bg-green-500";
-      case "phase-end":
-        return "bg-blue-500";
-      case "deadline":
-        return "bg-red-500";
-      case "milestone":
-        return "bg-yellow-500";
-      default:
-        return "bg-gray-500";
+      case "phase-start": return "bg-green-500";
+      case "phase-end": return "bg-blue-500";
+      case "deadline": return "bg-red-500";
+      case "milestone": return "bg-yellow-500";
+      default: return "bg-gray-500";
     }
   };
 
-  const prevMonth = () => {
-    setCurrentDate(new Date(currentYear, currentMonth - 1, 1));
+  const prevPeriod = () => {
+    if (viewMode === "week") {
+      setCurrentDate(new Date(currentDate.getTime() - 7 * 24 * 60 * 60 * 1000));
+    } else {
+      setCurrentDate(new Date(currentYear, currentMonth - 1, 1));
+    }
   };
 
-  const nextMonth = () => {
-    setCurrentDate(new Date(currentYear, currentMonth + 1, 1));
+  const nextPeriod = () => {
+    if (viewMode === "week") {
+      setCurrentDate(new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000));
+    } else {
+      setCurrentDate(new Date(currentYear, currentMonth + 1, 1));
+    }
   };
 
   const goToToday = () => {
@@ -113,7 +144,6 @@ export function CalendarView() {
     return date.toDateString() === today.toDateString();
   };
 
-  // Kommande events (nästa 30 dagar)
   const upcomingEvents = useMemo(() => {
     const today = new Date();
     const thirtyDaysFromNow = new Date(today);
@@ -124,6 +154,16 @@ export function CalendarView() {
       return eventDate >= today && eventDate <= thirtyDaysFromNow;
     }).slice(0, 5);
   }, [events]);
+
+  const getHeaderTitle = () => {
+    if (viewMode === "week") {
+      const weekNum = getWeekNumber(currentDate);
+      const firstDay = getWeekDays[0];
+      const lastDay = getWeekDays[6];
+      return `Vecka ${weekNum} (${firstDay.getDate()} ${MONTHS[firstDay.getMonth()].slice(0, 3)} - ${lastDay.getDate()} ${MONTHS[lastDay.getMonth()].slice(0, 3)})`;
+    }
+    return `${MONTHS[currentMonth]} ${currentYear}`;
+  };
 
   if (loading) {
     return (
@@ -137,71 +177,113 @@ export function CalendarView() {
 
   return (
     <div className="grid gap-4 md:grid-cols-3">
-      {/* Kalender */}
       <Card className="md:col-span-2">
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <CardTitle className="flex items-center gap-2">
             <CalendarIcon className="h-5 w-5" />
-            {MONTHS[currentMonth]} {currentYear}
+            {getHeaderTitle()}
           </CardTitle>
           <div className="flex items-center gap-2">
+            <Tabs value={viewMode} onValueChange={(v) => setViewMode(v as ViewMode)}>
+              <TabsList className="h-8">
+                <TabsTrigger value="week" className="text-xs px-3">Vecka</TabsTrigger>
+                <TabsTrigger value="month" className="text-xs px-3">Månad</TabsTrigger>
+              </TabsList>
+            </Tabs>
             <Button variant="outline" size="sm" onClick={goToToday}>
               Idag
             </Button>
-            <Button variant="outline" size="icon" onClick={prevMonth}>
+            <Button variant="outline" size="icon" onClick={prevPeriod}>
               <ChevronLeft className="h-4 w-4" />
             </Button>
-            <Button variant="outline" size="icon" onClick={nextMonth}>
+            <Button variant="outline" size="icon" onClick={nextPeriod}>
               <ChevronRight className="h-4 w-4" />
             </Button>
           </div>
         </CardHeader>
         <CardContent>
-          {/* Veckodagar */}
+          {/* Veckodagar header */}
           <div className="grid grid-cols-7 gap-1 mb-2">
-            {WEEKDAYS.map((day) => (
+            {(viewMode === "week" ? WEEKDAYS_FULL : WEEKDAYS).map((day, i) => (
               <div key={day} className="text-center text-sm font-medium text-muted-foreground py-2">
-                {day}
+                {viewMode === "week" ? WEEKDAYS[i] : day}
               </div>
             ))}
           </div>
           
-          {/* Dagar */}
-          <div className="grid grid-cols-7 gap-1">
-            {daysInMonth.map(({ date, isCurrentMonth }, index) => {
-              const dayEvents = getEventsForDate(date);
-              return (
-                <div
-                  key={index}
-                  className={`min-h-[80px] p-1 border rounded-md ${
-                    isCurrentMonth ? "bg-background" : "bg-muted/30"
-                  } ${isToday(date) ? "ring-2 ring-primary" : ""}`}
-                >
-                  <div className={`text-sm font-medium ${
-                    isCurrentMonth ? "" : "text-muted-foreground"
-                  }`}>
-                    {date.getDate()}
+          {/* Veckovisning */}
+          {viewMode === "week" && (
+            <div className="grid grid-cols-7 gap-1">
+              {getWeekDays.map((date, index) => {
+                const dayEvents = getEventsForDate(date);
+                return (
+                  <div
+                    key={index}
+                    className={`min-h-[200px] p-2 border rounded-md bg-background ${
+                      isToday(date) ? "ring-2 ring-primary" : ""
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-medium">{WEEKDAYS_FULL[index]}</span>
+                      <span className={`text-lg font-bold ${isToday(date) ? "text-primary" : ""}`}>
+                        {date.getDate()}
+                      </span>
+                    </div>
+                    <div className="space-y-1">
+                      {dayEvents.map((event) => (
+                        <div
+                          key={event.id}
+                          className={`text-xs px-2 py-1 rounded text-white ${getEventColor(event.type)}`}
+                          title={event.title}
+                        >
+                          {event.title}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <div className="space-y-1 mt-1">
-                    {dayEvents.slice(0, 2).map((event) => (
-                      <div
-                        key={event.id}
-                        className={`text-xs px-1 py-0.5 rounded truncate text-white ${getEventColor(event.type)}`}
-                        title={event.title}
-                      >
-                        {event.title}
-                      </div>
-                    ))}
-                    {dayEvents.length > 2 && (
-                      <div className="text-xs text-muted-foreground">
-                        +{dayEvents.length - 2} till
-                      </div>
-                    )}
+                );
+              })}
+            </div>
+          )}
+          
+          {/* Månadsvisning */}
+          {viewMode === "month" && (
+            <div className="grid grid-cols-7 gap-1">
+              {daysInMonth.map(({ date, isCurrentMonth }, index) => {
+                const dayEvents = getEventsForDate(date);
+                return (
+                  <div
+                    key={index}
+                    className={`min-h-[80px] p-1 border rounded-md ${
+                      isCurrentMonth ? "bg-background" : "bg-muted/30"
+                    } ${isToday(date) ? "ring-2 ring-primary" : ""}`}
+                  >
+                    <div className={`text-sm font-medium ${
+                      isCurrentMonth ? "" : "text-muted-foreground"
+                    }`}>
+                      {date.getDate()}
+                    </div>
+                    <div className="space-y-1 mt-1">
+                      {dayEvents.slice(0, 2).map((event) => (
+                        <div
+                          key={event.id}
+                          className={`text-xs px-1 py-0.5 rounded truncate text-white ${getEventColor(event.type)}`}
+                          title={event.title}
+                        >
+                          {event.title}
+                        </div>
+                      ))}
+                      {dayEvents.length > 2 && (
+                        <div className="text-xs text-muted-foreground">
+                          +{dayEvents.length - 2} till
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          )}
         </CardContent>
       </Card>
 
@@ -240,7 +322,6 @@ export function CalendarView() {
             </div>
           )}
           
-          {/* Teckenförklaring */}
           <div className="mt-6 pt-4 border-t">
             <p className="text-xs font-medium text-muted-foreground mb-2">Teckenförklaring</p>
             <div className="space-y-1">
