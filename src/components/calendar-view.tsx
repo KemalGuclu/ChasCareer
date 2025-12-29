@@ -109,13 +109,22 @@ export function CalendarView() {
     });
   };
 
-  const getEventColor = (type: string) => {
+  // Färger med olika nyanser per grupp
+  const getEventColor = (type: string, group?: string) => {
+    // Bestäm om det är grupp 1 (Stockholm) eller grupp 2 (Malmö)
+    const isGroup2 = group?.toLowerCase().includes("malmö") || group?.toLowerCase().includes("malmo");
+    
     switch (type) {
-      case "phase-start": return "bg-green-500";
-      case "phase-end": return "bg-blue-500";
-      case "deadline": return "bg-red-500";
-      case "milestone": return "bg-yellow-500";
-      default: return "bg-gray-500";
+      case "phase-start": 
+        return isGroup2 ? "bg-emerald-500" : "bg-green-500";
+      case "phase-end": 
+        return isGroup2 ? "bg-sky-500" : "bg-blue-500";
+      case "deadline": 
+        return isGroup2 ? "bg-rose-500" : "bg-red-600";
+      case "milestone": 
+        return isGroup2 ? "bg-amber-500" : "bg-yellow-500";
+      default: 
+        return "bg-gray-500";
     }
   };
 
@@ -233,7 +242,7 @@ export function CalendarView() {
                       {dayEvents.map((event) => (
                         <div
                           key={event.id}
-                          className={`text-xs px-2 py-1 rounded text-white ${getEventColor(event.type)}`}
+                          className={`text-xs px-2 py-1 rounded text-white ${getEventColor(event.type, event.group)}`}
                           title={event.title}
                         >
                           {event.title}
@@ -267,7 +276,7 @@ export function CalendarView() {
                       {dayEvents.slice(0, 2).map((event) => (
                         <div
                           key={event.id}
-                          className={`text-xs px-1 py-0.5 rounded truncate text-white ${getEventColor(event.type)}`}
+                          className={`text-xs px-1 py-0.5 rounded truncate text-white ${getEventColor(event.type, event.group)}`}
                           title={event.title}
                         >
                           {event.title}
@@ -301,7 +310,7 @@ export function CalendarView() {
             <div className="space-y-3">
               {upcomingEvents.map((event) => (
                 <div key={event.id} className="flex items-start gap-3">
-                  <div className={`w-3 h-3 rounded-full mt-1.5 ${getEventColor(event.type)}`} />
+                  <div className={`w-3 h-3 rounded-full mt-1.5 ${getEventColor(event.type, event.group)}`} />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate">{event.title}</p>
                     <p className="text-xs text-muted-foreground">
