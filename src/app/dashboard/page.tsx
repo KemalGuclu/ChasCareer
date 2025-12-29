@@ -11,6 +11,7 @@ import {
   CheckCircle2,
   Clock,
 } from "lucide-react";
+import { PhaseDistributionChart, LiaStatusChart } from "@/components/charts/progress-charts";
 
 async function getAdminStats() {
   const [totalStudents, studentsWithLia, phaseStats] = await Promise.all([
@@ -223,40 +224,17 @@ export default async function DashboardPage() {
             </Card>
           </div>
 
-          {/* Phase Distribution */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Fördelning per fas</CardTitle>
-              <CardDescription>Antal studerande i varje fas</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {[
-                  { name: "FAS 1: Intro", count: adminStats.phases.PHASE_1, color: "bg-blue-500" },
-                  { name: "FAS 2: Nätverkande", count: adminStats.phases.PHASE_2, color: "bg-green-500" },
-                  { name: "FAS 3: LIA-sök", count: adminStats.phases.PHASE_3, color: "bg-yellow-500" },
-                  { name: "FAS 4: Jobb-sök", count: adminStats.phases.PHASE_4, color: "bg-purple-500" },
-                ].map((phase) => (
-                  <div key={phase.name} className="flex items-center gap-4">
-                    <div className="w-36 text-sm font-medium">{phase.name}</div>
-                    <div className="flex-1">
-                      <div className="h-4 bg-secondary rounded-full">
-                        <div 
-                          className={`h-4 ${phase.color} rounded-full transition-all`}
-                          style={{ 
-                            width: adminStats.totalStudents 
-                              ? `${(phase.count / adminStats.totalStudents) * 100}%` 
-                              : "0%" 
-                          }}
-                        />
-                      </div>
-                    </div>
-                    <div className="w-12 text-right text-sm font-medium">{phase.count}</div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          {/* Phase Distribution Charts */}
+          <div className="grid gap-4 md:grid-cols-2">
+            <PhaseDistributionChart 
+              data={adminStats.phases} 
+              totalStudents={adminStats.totalStudents} 
+            />
+            <LiaStatusChart 
+              withLia={adminStats.studentsWithLia} 
+              total={adminStats.totalStudents} 
+            />
+          </div>
         </>
       )}
     </div>
