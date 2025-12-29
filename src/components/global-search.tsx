@@ -112,10 +112,11 @@ export function GlobalSearch() {
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 ref={inputRef}
+                type="text"
                 placeholder="Sök studerande, företag, leads..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="pl-9 pr-9"
+                className="pl-9 pr-9 [&::-webkit-search-cancel-button]:hidden"
               />
               {query && (
                 <Button
