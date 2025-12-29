@@ -66,18 +66,19 @@ async function main() {
   });
 
   // Skapa fas-scheman för varje utbildningsgrupp
+  // Enligt dokumentation: FAS 1 Sept-Nov, FAS 2 Nov-Mar, FAS 3 Apr-Okt, FAS 4 Nov-Jun
   console.log("📅 Creating phase schedules...");
   const phaseSchedules = [
-    // Stockholm FAS25
-    { careerGroupId: stockholmGroup.id, phase: "PHASE_1" as const, startDate: new Date("2025-01-13"), endDate: new Date("2025-02-28"), deadline: new Date("2025-02-28") },
-    { careerGroupId: stockholmGroup.id, phase: "PHASE_2" as const, startDate: new Date("2025-03-01"), endDate: new Date("2025-05-31"), deadline: new Date("2025-05-31") },
-    { careerGroupId: stockholmGroup.id, phase: "PHASE_3" as const, startDate: new Date("2025-06-01"), endDate: new Date("2025-09-30"), deadline: new Date("2025-09-30") },
-    { careerGroupId: stockholmGroup.id, phase: "PHASE_4" as const, startDate: new Date("2025-11-10"), endDate: new Date("2026-09-30"), deadline: new Date("2026-06-30") },
-    // Malmö FAS25
-    { careerGroupId: malmoGroup.id, phase: "PHASE_1" as const, startDate: new Date("2025-01-13"), endDate: new Date("2025-02-28"), deadline: new Date("2025-02-28") },
-    { careerGroupId: malmoGroup.id, phase: "PHASE_2" as const, startDate: new Date("2025-03-01"), endDate: new Date("2025-05-31"), deadline: new Date("2025-05-31") },
-    { careerGroupId: malmoGroup.id, phase: "PHASE_3" as const, startDate: new Date("2025-06-01"), endDate: new Date("2025-09-30"), deadline: new Date("2025-09-30") },
-    { careerGroupId: malmoGroup.id, phase: "PHASE_4" as const, startDate: new Date("2025-11-10"), endDate: new Date("2026-09-30"), deadline: new Date("2026-06-30") },
+    // Stockholm FAS25 (kursstart sept 2024)
+    { careerGroupId: stockholmGroup.id, phase: "PHASE_1" as const, startDate: new Date("2024-09-01"), endDate: new Date("2024-11-30"), deadline: new Date("2024-11-30") },
+    { careerGroupId: stockholmGroup.id, phase: "PHASE_2" as const, startDate: new Date("2024-12-01"), endDate: new Date("2025-03-31"), deadline: new Date("2025-03-31") },
+    { careerGroupId: stockholmGroup.id, phase: "PHASE_3" as const, startDate: new Date("2025-04-01"), endDate: new Date("2025-10-31"), deadline: new Date("2025-09-30") },
+    { careerGroupId: stockholmGroup.id, phase: "PHASE_4" as const, startDate: new Date("2025-11-10"), endDate: new Date("2026-06-30"), deadline: new Date("2026-04-26") },
+    // Malmö FAS25 (kursstart sept 2024)
+    { careerGroupId: malmoGroup.id, phase: "PHASE_1" as const, startDate: new Date("2024-09-01"), endDate: new Date("2024-11-30"), deadline: new Date("2024-11-30") },
+    { careerGroupId: malmoGroup.id, phase: "PHASE_2" as const, startDate: new Date("2024-12-01"), endDate: new Date("2025-03-31"), deadline: new Date("2025-03-31") },
+    { careerGroupId: malmoGroup.id, phase: "PHASE_3" as const, startDate: new Date("2025-04-01"), endDate: new Date("2025-10-31"), deadline: new Date("2025-09-30") },
+    { careerGroupId: malmoGroup.id, phase: "PHASE_4" as const, startDate: new Date("2025-11-10"), endDate: new Date("2026-06-30"), deadline: new Date("2026-04-26") },
   ];
 
   for (const schedule of phaseSchedules) {
