@@ -206,6 +206,7 @@ export function AppLayout({ children, user }: AppLayoutProps) {
           <SidebarTrigger />
           <Separator orientation="vertical" className="h-6" />
           <GlobalSearch />
+          <div className="flex-1" />
           <NotificationBell />
           <ThemeToggle />
         </header>
